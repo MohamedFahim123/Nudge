@@ -1,8 +1,5 @@
-import { getTokenFromServerCookies } from "@/Actions/TokenHandlers";
 import { redirect } from "next/navigation";
 
 export default async function Home() {
-  const token = await getTokenFromServerCookies();
-  if (token) redirect("/dashboard/profile");
-  else redirect("/auth/login");
+  redirect("/home");
 }

@@ -1,1 +1,68 @@
+@import "https://fonts.cdnfonts.com/css/myriad-pro";
+@import "https://fonts.cdnfonts.com/css/space-mono";
 @import "tailwindcss";
+
+body {
+  font-family: "Myriad Pro", sans-serif;
+  color: #ffffff;
+}
+
+nav,
+footer,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button {
+  font-family: "Space Mono", sans-serif;
+}
+.speakers-swiper .swiper-button-prev {
+  left: calc(100% - 120px) !important;
+  top: 35px !important;
+}
+.speakers-swiper .swiper-button-prev::after {
+  font-size: 22px !important;
+  background-color: #5bf286 !important;
+  transition: all 0.3s ease-in-out;
+  padding: 10px 17px 10px 15px !important;
+  border-radius: 50% !important;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  -ms-border-radius: 50% !important;
+  -o-border-radius: 50% !important;
+  color: #ffffff !important;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+.speakers-swiper .swiper-button-prev:hover::after {
+  background-color: #ffffff !important;
+  color: #5bf286 !important;
+}
+.speakers-swiper .swiper-button-next {
+  right: 30px !important;
+  top: 35px !important;
+}
+.speakers-swiper .swiper-button-next::after {
+  font-size: 22px !important;
+  background-color: #5bf286 !important;
+  transition: all 0.3s ease-in-out;
+  padding: 10px 15px 10px 17px !important;
+  border-radius: 50% !important;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  -ms-border-radius: 50% !important;
+  -o-border-radius: 50% !important;
+  color: #ffffff !important;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+.speakers-swiper .swiper-button-next:hover::after {
+  background-color: #ffffff !important;
+  color: #5bf286 !important;
+}

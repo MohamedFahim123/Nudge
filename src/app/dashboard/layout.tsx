@@ -1,5 +1,10 @@
+import { getTokenFromServerCookies } from "@/Actions/TokenHandlers";
+import { redirect } from "next/navigation";
 
-const DashboardLayout = () => {
+const DashboardLayout = async () => {
+  const token = await getTokenFromServerCookies();
+
+  if (!token) return redirect("/auth/login");
   return <></>;
 };
 
