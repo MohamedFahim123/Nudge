@@ -22,7 +22,8 @@ button {
   left: calc(100% - 120px) !important;
   top: 35px !important;
 }
-.speakers-swiper .swiper-button-prev::after {
+.speakers-swiper .swiper-button-prev::after,
+.expectation-swiper .swiper-button-prev::after {
   font-size: 22px !important;
   background-color: #5bf286 !important;
   transition: all 0.3s ease-in-out;
@@ -38,15 +39,24 @@ button {
   -ms-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
 }
-.speakers-swiper .swiper-button-prev:hover::after {
+
+.expectation-swiper .swiper-button-prev::after {
+  border: 1px solid #5bf286 !important;
+}
+
+.speakers-swiper .swiper-button-prev:hover::after,
+.expectation-swiper .swiper-button-prev:hover::after {
   background-color: #ffffff !important;
   color: #5bf286 !important;
 }
+
 .speakers-swiper .swiper-button-next {
   right: 30px !important;
   top: 35px !important;
 }
-.speakers-swiper .swiper-button-next::after {
+
+.speakers-swiper .swiper-button-next::after,
+.expectation-swiper .swiper-button-next::after {
   font-size: 22px !important;
   background-color: #5bf286 !important;
   transition: all 0.3s ease-in-out;
@@ -62,7 +72,13 @@ button {
   -ms-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
 }
-.speakers-swiper .swiper-button-next:hover::after {
+
+.expectation-swiper .swiper-button-next::after {
+  border: 1px solid #5bf286 !important;
+}
+
+.speakers-swiper .swiper-button-next:hover::after,
+.expectation-swiper .swiper-button-next:hover::after {
   background-color: #ffffff !important;
   color: #5bf286 !important;
 }
