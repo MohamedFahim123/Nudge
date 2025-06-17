@@ -1,4 +1,5 @@
 import CEOSection from "@/components/CEOSection/CEOSection";
+import DeadLineSection from "@/components/DeadLineSection/DeadLineSection";
 import ExpectationSlider from "@/components/ExpectationSlider/ExpectationSlider";
 import GlobalExpertise from "@/components/GlobalExpertise/GlobalExpertise";
 import MaximizingRevenue from "@/components/MaximizingRevenue/MaximizingRevenue";
@@ -10,6 +11,8 @@ import SummitHeroSection from "@/components/SummitHeroSection/SummitHeroSection"
 import SummitInfo from "@/components/SummitInfo/SummitInfo";
 import TicketSection from "@/components/TicketSection/TicketSection";
 import { Metadata } from "next";
+import Link from "next/link";
+import { MdOutlineArrowRightAlt } from "react-icons/md";
 
 export const metadata: Metadata = {
   title: "Nudge | Summit",
@@ -30,6 +33,14 @@ const SummitPage = () => {
       <ExpectationSlider />
       <SummitInfo />
       <TicketSection />
+      <Link
+        href={"/ticket"}
+        className="h-32 w-full bg-green-400 flex items-center justify-center text-black text-5xl font-bold underline transition-all duration-300 hover:text-white"
+      >
+        <MdOutlineArrowRightAlt />
+        Get Your Ticket
+      </Link>
+      <DeadLineSection />
     </>
   );
 };
