@@ -12,9 +12,9 @@
   height: 100%;
   display: block;
   animation: spinner-b4c8mmhg 0.5s backwards, spinner-49opz7hg 1.25s 0.5s infinite ease;
-  border: 8.8px solid rgba(35,77,212,1);
+  border: 8.8px solid #250168;
   border-radius: 50%;
-  box-shadow: 0 -52.8px 0 -8.8px rgba(35,77,212,1);
+  box-shadow: 0 -52.8px 0 -8.8px #250168;
   position: absolute;
 }
 
@@ -24,7 +24,7 @@
 
 @keyframes spinner-b4c8mmhg {
   from {
-    box-shadow: 0 0 0 -8.8px rgba(35,77,212,1);
+    box-shadow: 0 0 0 -8.8px #250168;
   }
 }
 

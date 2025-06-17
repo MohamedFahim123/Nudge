@@ -46,7 +46,7 @@ const ForgetPasswordForm = () => {
 
       <Link
         href="/auth/login"
-        className="text-[rgba(35,77,212,1)] font-semibold underline mt-2"
+        className="text-[#250168] font-semibold underline mt-2"
       >
         Back to Login
       </Link>

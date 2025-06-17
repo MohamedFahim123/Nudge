@@ -30,7 +30,7 @@ const LoginForm = () => {
           htmlFor="LoginEmail"
           className={`${styles.authLable} ${
             errors.email && "mb-0"
-          } block mb-2 text-sm font-medium dark:text-white`}
+          } block mb-2 text-sm font-medium `}
         >
           Email
         </label>
@@ -52,7 +52,7 @@ const LoginForm = () => {
           htmlFor="LoginPassword"
           className={`${styles.authLable} ${
             errors.password && "mb-0"
-          } block mb-2 text-sm font-medium dark:text-white`}
+          } block mb-2 text-sm font-medium `}
         >
           Password
         </label>
@@ -90,7 +90,7 @@ const LoginForm = () => {
         </div>
         <Link
           href={"/auth/forget-password"}
-          className="text-[rgba(35,77,212,1)] font-500 text-sm"
+          className="text-[#250168] font-500 text-sm"
         >
           Forget Password?
         </Link>

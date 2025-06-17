@@ -45,10 +45,10 @@ const ExpectationSlider = () => {
   return (
     <section className="w-full py-16 bg-gray-100">
       <div className="max-w-screen-xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-extrabold text-[#250168] mb-4 max-w-4xl leading-relaxed">
-          We are committed to meeting all your expectations
+        <h2 className="text-4xl md:text-5xl font-regular text-[#250168] mb-4 max-w-3xl">
+          We are committed to meeting<br /> all your expectations
         </h2>
-        <p className="italic text-black text-lg md:text-xl font-semibold mb-8 leading-relaxed">
+        <p className="italic text-black text-lg md:text-xl font-regular mb-8 leading-relaxed">
           Have you attended a summit where you learned something but didn’t know
           how to apply it?
           <br />
@@ -84,7 +84,7 @@ const ExpectationSlider = () => {
                       className="object-cover"
                     />
                   </div>
-                  <p className="text-gray-800 font-medium">{item.text}</p>
+                  <p className="text-gray-800 font-regular text-xl">{item.text}</p>
                 </div>
               </SwiperSlide>
             ))}

@@ -34,8 +34,8 @@ const ArcChart = ({ percent, color, label }: ArcChartProps) => {
           transition={{ duration: 1.5, ease: "easeOut" }}
         />
       </svg>
-      <span className={`text-3xl md:text-4xl font-bold`} style={{ color }}>{percent}%</span>
-      <p className="text-lg md:text-xl text-center text-gray-700 mt-2 w-96">{label}</p>
+      <span className={`text-3xl md:text-4xl font-bold`} style={{ color,marginTop: "-50px" }}>{percent}%</span>
+      <p className="text-md text-center text-gray-700 mt-2 w-80">{label}</p>
     </div>
   );
 };

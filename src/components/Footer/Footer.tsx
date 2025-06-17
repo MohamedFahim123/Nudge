@@ -23,7 +23,7 @@ const Footer = () => {
             <span className="text-xs font-semibold bg-gray-700 px-2 py-1 rounded">
               ABOUT
             </span>
-            <p className="text-xl max-w-xl mt-6 text-[#969696] leading-relaxed">
+            <p className="text-md max-w-xl mt-6 text-[#969696] leading-relaxed">
               Nudge Ltd. is a Jordan-based consulting firm serving the MENA
               region, dedicated to helping corporations maximize revenue through
               its proprietary Nudge Framework. Grounded in science and backed by
@@ -38,31 +38,31 @@ const Footer = () => {
           <span className="text-xs font-semibold bg-gray-700 px-2 py-1 rounded">
             CONTACT
           </span>
-          <a
+          <Link
             href="mailto:info@nudgeltd.com"
             className="text-sm text-[#969696] hover:underline duration-300 transition-all hover:text-green-400"
           >
             info@nudgeltd.com
-          </a>
+          </Link>
         </div>
       </div>
 
-      <div className="border-t border-gray-700 flex flex-col items-center gap-4 pt-20">
-        <div className="flex gap-6 text-gray-400 text-xl mb-6">
-          <Link className="p-6 rounded-full text-[#969696] transition-all duration-300 hover:text-green-300 border border-[#969696] hover:border-green-300" href="/" aria-label="LinkedIn">
+      <div className="border-t border-[#969696] flex flex-col items-center gap-4 pt-20">
+        <div className="flex gap-6 text-gray-400 text-2xl mb-6">
+          <Link className="p-4 rounded-full text-[#969696] transition-all duration-300 hover:text-green-300 border border-[#969696] hover:border-green-300" href="/" aria-label="LinkedIn">
             <FaLinkedin />
           </Link>
-          <Link className="p-6 rounded-full text-[#969696] transition-all duration-300 hover:text-green-300 border border-[#969696] hover:border-green-300" href="/" aria-label="X (Twitter)">
+          <Link className="p-4 rounded-full text-[#969696] transition-all duration-300 hover:text-green-300 border border-[#969696] hover:border-green-300" href="/" aria-label="X (Twitter)">
             <FaTimes />
           </Link>
-          <Link className="p-6 rounded-full text-[#969696] transition-all duration-300 hover:text-green-300 border border-[#969696] hover:border-green-300" href="/" aria-label="Instagram">
+          <Link className="p-4 rounded-full text-[#969696] transition-all duration-300 hover:text-green-300 border border-[#969696] hover:border-green-300" href="/" aria-label="Instagram">
             <FaInstagram />
           </Link>
-          <Link className="p-6 rounded-full text-[#969696] transition-all duration-300 hover:text-green-300 border border-[#969696] hover:border-green-300" href="/" aria-label="YouTube">
+          <Link className="p-4 rounded-full text-[#969696] transition-all duration-300 hover:text-green-300 border border-[#969696] hover:border-green-300" href="/" aria-label="YouTube">
             <FaYoutube />
           </Link>
         </div>
-        <p className="text-lg text-gray-500">
+        <p className="text-md text-gray-500">
           © 2025 <strong className="text-[#999999] transition-all duration-300 hover:text-green-400 hover:underline cursor-pointer mx-1">Nudge Ltd.</strong> | All Rights Reserved
         </p>
       </div>

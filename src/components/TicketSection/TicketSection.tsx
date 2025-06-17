@@ -19,7 +19,7 @@ const TicketSection = () => {
   return (
     <section className="bg-gray-100 py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-screen-xl mx-auto">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-center text-[#250168] mb-4">
+        <h1 className="text-4xl md:text-5xl font-regular text-center text-[#250168] mb-4">
           Only 500 seats are available!
         </h1>
 
@@ -28,10 +28,10 @@ const TicketSection = () => {
             <thead>
               <tr>
                 <th className="text-left px-4 py-3"></th>
-                <th className="bg-green-400 text-white px-4 py-3 text-xl font-bold">
+                <th className="bg-green-400 text-white px-4 py-3 text-lg font-bold">
                   Standard <br /> <span className="text-base">$749</span>
                 </th>
-                <th className="bg-[#250168] text-white px-4 py-3 text-xl font-bold relative">
+                <th className="bg-[#250168] text-white px-4 py-3 text-lg font-bold relative">
                   Premium <br /> <span className="text-base">$1,349</span>
                   <span className="absolute top-1 right-1 bg-red-500 text-white text-xs font-semibold px-2 py-0.5 rounded-full">
                     Only 50 seats
@@ -42,17 +42,17 @@ const TicketSection = () => {
             <tbody>
               {features.map((feature, index) => (
                 <tr key={index} className={"bg-white border-b border-gray-100"}>
-                  <td className="px-4 py-3 text-xl text-gray-700 border-e border-gray-100">{feature}</td>
-                  <td className="px-4 py-3 text-xl text-center border-e border-gray-100">
+                  <td className="px-4 py-3 text-lg text-gray-700 border-e border-gray-100">{feature}</td>
+                  <td className="px-4 py-3 text-lg text-center border-e border-gray-100">
                     {standardIncluded.includes(index) && (
-                      <span className="text-green-500 text-xl font-bold">
+                      <span className="text-green-500 text-lg font-bold">
                         ✓
                       </span>
                     )}
                   </td>
-                  <td className="px-4 py-3 text-xl text-center">
+                  <td className="px-4 py-3 text-lg text-center">
                     {premiumIncluded.includes(index) && (
-                      <span className="text-purple-700 text-xl font-bold">
+                      <span className="text-purple-700 text-lg font-bold">
                         ✓
                       </span>
                     )}
@@ -63,7 +63,7 @@ const TicketSection = () => {
           </table>
         </div>
 
-        <p className="text-center text-2xl text-gray-600 mt-8 italic">
+        <p className="text-center text-xl text-gray-600 mt-8 italic">
           The tickets’ prices exclude tax, travel, accommodation, and personal
           expenses.
         </p>

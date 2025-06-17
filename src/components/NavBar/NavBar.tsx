@@ -47,7 +47,7 @@ const NavBar = () => {
           </svg>
         </button>
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
+          <ul className="font-medium flex flex-col items-center p-4 md:p-0 mt-4 border rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
             <li>
               <Link
                 href="/home"
@@ -88,6 +88,14 @@ const NavBar = () => {
                 } rounded-sm md:bg-transparent md:p-0`}
               >
                 Contact Us
+              </Link>
+            </li>
+            <li className="block py-2 px-3">
+              <Link
+                href="/auth/login"
+                className="px-6 py-2 bg-[#5bf286] border border-[#5bf286] text-white font-semibold transition-all hover:bg-white hover:text-[#5bf286]"
+              >
+                Login
               </Link>
             </li>
           </ul>

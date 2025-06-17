@@ -33,13 +33,15 @@ const SummitPage = () => {
       <ExpectationSlider />
       <SummitInfo />
       <TicketSection />
-      <Link
-        href={"/ticket"}
-        className="h-32 w-full bg-green-400 flex items-center justify-center text-black text-5xl font-bold underline transition-all duration-300 hover:text-white"
-      >
-        <MdOutlineArrowRightAlt />
-        Get Your Ticket
-      </Link>
+      <h2 className="underline">
+        <Link
+          href={"/ticket"}
+          className="h-32 w-full bg-green-400 flex items-center justify-center text-black text-5xl font-bold transition-all duration-300 hover:text-white"
+        >
+          <MdOutlineArrowRightAlt />
+          Get Your Ticket
+        </Link>
+      </h2>
       <DeadLineSection />
     </>
   );

@@ -1,12 +1,21 @@
-@import "https://fonts.cdnfonts.com/css/myriad-pro";
-@import "https://fonts.cdnfonts.com/css/space-mono";
 @import "tailwindcss";
+@font-face {
+  font-family: "AgencyFB";
+  src: url("/fonts/agency.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Myriad";
+  src: url("/fonts/Myriad.OTF") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
 
-body {
+/* body {
   font-family: "Myriad Pro", sans-serif;
   color: #ffffff;
 }
-
 nav,
 footer a,
 h1,
@@ -17,6 +26,19 @@ h5,
 h6,
 button {
   font-family: "Space Mono", sans-serif;
+} */
+body{
+  font-family: "Myriad", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button {
+  font-family: "AgencyFB", sans-serif;
 }
 .speakers-swiper .swiper-button-prev {
   left: calc(100% - 120px) !important;

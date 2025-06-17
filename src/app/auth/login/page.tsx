@@ -24,7 +24,7 @@ const LoginPage = () => {
         Create an account?{" "}
         <Link
           href="/auth/register"
-          className="text-[rgba(35,77,212,1)] font-semibold underline"
+          className="text-[#250168] font-semibold underline"
         >
           Sign up
         </Link>

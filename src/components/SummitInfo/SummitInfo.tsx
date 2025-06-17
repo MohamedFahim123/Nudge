@@ -9,7 +9,7 @@ const SummitInfo = () => {
     >
       <div className={`max-w-screen-xl mx-auto ${styles.summitInfoContainer}`}>
         <div className="text-center mb-8">
-          <p className="text-3xl leading-relaxed md:text-4xl font-semibold mx-auto mb-8">
+          <p className="text-3xl max-w-6xl italic md:text-4xl font-regular mx-auto mb-8">
             From the world&apos;s lowest point on earth, elevate to your
             business&apos;s highest potential—because the climb starts here!
           </p>
@@ -19,8 +19,8 @@ const SummitInfo = () => {
           </p>
         </div>
 
-        <div className="max-w-7xl text-center mx-auto bg-white/10 backdrop-blur-sm rounded-xl p-8 md:p-10">
-          <p className="text-lg md:text-xl leading-relaxed">
+        <div className="max-w-6xl text-center mx-auto bg-white/10 backdrop-blur-sm rounded-xl p-8 md:p-10">
+          <p className="text-md md:text-lg leading-relaxed">
             The Nudge Summit 2025 will take place on October 18th and 19th,
             2025, at the King Hussein Bin Talal Convention Centre and Hilton
             Dead Sea Resort & Spa, situated on the shores of the Dead Sea in

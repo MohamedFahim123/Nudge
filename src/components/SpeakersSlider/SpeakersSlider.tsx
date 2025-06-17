@@ -58,54 +58,59 @@ const SpeakersSlider = () => {
   ];
 
   return (
-    <section className="bg-[#250168] py-16">
-      <div className="max-w-screen-xl mx-auto">
-        <Swiper
-          modules={[Navigation, Autoplay]}
-          spaceBetween={30}
-          autoplay={{ delay: 5000 }}
-          slidesPerView={1}
-          pagination={{ clickable: true }}
-          navigation
-          loop={true}
-          className="speakers-swiper"
-        >
-          {speakers.map((speaker) => (
-            <SwiperSlide key={speaker.id}>
-              <div className="rounded-xl p-8 md:p-12">
-                <div className="flex flex-col md:flex-row gap-8">
-                  <div className="w-full md:w-2/5 bg-gray-200 rounded-lg h-64 md:h-96 flex items-center justify-center">
-                    <Image
-                      src={speaker.src}
-                      alt={speaker.name}
-                      width={500}
-                      height={500}
-                      className="w-full h-full object-cover rounded-lg"
-                    />
-                  </div>
+    <section className="">
+      <h2 className="text-center text-2xl py-8 md:text-5xl font-regular text-[#231F20] bg-[#5BF286]">
+        Top Speakers & Experts
+      </h2>
+      <div className="bg-[#250168] py-16">
+        <div className="max-w-screen-xl mx-auto">
+          <Swiper
+            modules={[Navigation, Autoplay]}
+            spaceBetween={30}
+            autoplay={{ delay: 5000 }}
+            slidesPerView={1}
+            pagination={{ clickable: true }}
+            navigation
+            loop={true}
+            className="speakers-swiper"
+          >
+            {speakers.map((speaker) => (
+              <SwiperSlide key={speaker.id}>
+                <div className="rounded-xl p-8 md:p-12">
+                  <div className="flex flex-col md:flex-row gap-8">
+                    <div className="w-full md:w-2/5 bg-gray-200 rounded-lg h-64 md:h-96 flex items-center justify-center">
+                      <Image
+                        src={speaker.src}
+                        alt={speaker.name}
+                        width={500}
+                        height={500}
+                        className="w-full h-full object-cover rounded-lg"
+                      />
+                    </div>
 
-                  <div className="w-full md:w-3/5">
-                    <h3 className="text-2xl md:text-3xl font-bold text-white">
-                      {speaker.name}
-                    </h3>
-                    <h4 className="text-xl md:text-2xl text-white mt-2">
-                      {speaker.title}
-                    </h4>
-                    <h5 className="text-lg md:text-xl text-green-400 mt-1">
-                      {speaker.subtitle}
-                    </h5>
+                    <div className="w-full md:w-3/5">
+                      <h3 className="text-2xl md:text-3xl font-regular text-white">
+                        {speaker.name}
+                      </h3>
+                      <p className="text-xl md:text-2xl text-white mt-2 italic">
+                        {speaker.title}
+                      </p>
+                      <p className="text-lg md:text-xl text-green-400 mt-1 italic">
+                        {speaker.subtitle}
+                      </p>
 
-                    <div className="border-t border-gray-200 my-6"></div>
+                      <div className="border-t border-gray-200 my-6"></div>
 
-                    <p className="text-white leading-relaxed">
-                      {speaker.description}
-                    </p>
+                      <p className="text-white leading-relaxed">
+                        {speaker.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
     </section>
   );

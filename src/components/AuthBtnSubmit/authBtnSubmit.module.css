@@ -3,8 +3,8 @@
   font-size: 1rem;
   border: none;
   color: #fff;
-  background-color: rgba(35,77,212,1);
-  border: 1px solid rgba(35,77,212,1);
+  background-color: #250168;
+  border: 1px solid #250168;
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
@@ -12,7 +12,7 @@
 }
 .authSubmit:hover {
   background-color: #fff;
-  color: rgba(35,77,212,1);
+  color: #250168;
 }
 .authSubmit:active,
 .authSubmit:focus,
