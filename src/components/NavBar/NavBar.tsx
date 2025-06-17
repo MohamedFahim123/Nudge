@@ -11,7 +11,7 @@ const NavBar = () => {
     <nav className="bg-[#1E1E1E] py-5">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-4">
         <Link
-          href="/azura/home"
+          href="/home"
           className="flex items-center space-x-3 rtl:space-x-reverse"
         >
           <Image
