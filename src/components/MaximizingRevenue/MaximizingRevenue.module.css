@@ -1,0 +1,36 @@
+
+@keyframes fadeSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.headingAnimated {
+  animation: fadeSlideDown 1s ease-out forwards;
+}
+
+.subheadingAnimated {
+  animation: fadeSlideDown 1s ease-out forwards;
+  animation-delay: 0.3s;
+  opacity: 0; 
+}
+.paragraphAnimated {
+  animation: fadeSlideUp 1s ease-out forwards;
+  animation-delay: 0.6s;
+  opacity: 0; 
+}

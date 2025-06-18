@@ -1,11 +1,12 @@
 import Image from "next/image";
 import React from "react";
+import styles from "./NudgeFramework.module.css"; // 👈 import the CSS module
 
 const NudgeFramework = () => {
   return (
     <section className="w-full px-4 py-16 md:px-16 bg-white">
       <div className="max-w-screen-xl mx-auto grid md:grid-cols-12 gap-12 items-center">
-        <div className="md:col-span-7">
+        <div className={`md:col-span-7 ${styles.fadeInUp}`}>
           <h2 className="text-4xl md:text-5xl font-regular text-[#250168] mb-4">
             The Nudge Framework
           </h2>
@@ -28,7 +29,7 @@ const NudgeFramework = () => {
           </p>
         </div>
 
-        <div className="md:col-span-5 flex justify-center">
+        <div className={`md:col-span-5 flex justify-center ${styles.fadeInUp}`}>
           <Image
             src="/images/frameWork.png"
             alt="pillars"

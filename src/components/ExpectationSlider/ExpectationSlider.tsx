@@ -7,6 +7,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Autoplay, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import styles from "./ExpectationSlider.module.css"; // 👈 Import the CSS module
 
 const items = [
   {
@@ -44,27 +45,33 @@ const items = [
 const ExpectationSlider = () => {
   return (
     <section className="w-full py-16 bg-gray-100">
-      <div className="max-w-screen-xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-regular text-[#250168] mb-4 max-w-3xl">
-          We are committed to meeting<br /> all your expectations
+      <div className="max-w-screen-xl mx-auto px-4">
+        <h2
+          className={`text-4xl md:text-5xl font-regular text-[#250168] mb-4 max-w-3xl ${styles.fadeSlideUp}`}
+        >
+          We are committed to meeting
+          <br /> all your expectations
         </h2>
-        <p className="italic text-black text-lg md:text-xl font-regular mb-8 leading-relaxed">
+
+        <p
+          className={`italic text-black text-lg md:text-xl font-regular mb-8 leading-relaxed ${styles.fadeSlideUp}`}
+        >
           Have you attended a summit where you learned something but didn’t know
           how to apply it?
           <br />
           In two transformational days at the Hilton Dead Sea, you have ...
         </p>
 
-        <div className="relative">
+        <div className={`relative ${styles.fadeSlideUp}`}>
           <Swiper
             modules={[Navigation, Autoplay]}
             spaceBetween={30}
             autoplay={{ delay: 5000 }}
             slidesPerView={1}
             breakpoints={{
-              768: { slidesPerView: 4 },
+              768: { slidesPerView: 2 },
+              1024: { slidesPerView: 4 },
             }}
-            pagination={{ clickable: true }}
             navigation
             loop={true}
             className="expectation-swiper"
@@ -73,7 +80,7 @@ const ExpectationSlider = () => {
               <SwiperSlide key={item.id}>
                 <div className="flex flex-col items-center text-center px-4 pt-20">
                   <div
-                    className="p-2 mb-4 hover:scale-105 transition bg-green-400"
+                    className="p-2 mb-4 hover:scale-105 transition bg-green-400 flex justify-center items-center rounded-full"
                     style={{ width: "60px", height: "60px" }}
                   >
                     <Image
@@ -81,10 +88,12 @@ const ExpectationSlider = () => {
                       alt={`Icon ${item.id}`}
                       width={60}
                       height={60}
-                      className="object-cover"
+                      className="object-contain"
                     />
                   </div>
-                  <p className="text-gray-800 font-regular text-xl">{item.text}</p>
+                  <p className="text-gray-800 font-regular text-xl">
+                    {item.text}
+                  </p>
                 </div>
               </SwiperSlide>
             ))}

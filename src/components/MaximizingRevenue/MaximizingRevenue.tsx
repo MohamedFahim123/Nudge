@@ -1,29 +1,24 @@
-"use client";
-
 import React from "react";
+import styles from "./MaximizingRevenue.module.css";
 import ArcChart from "../ArcChart/ArcChart";
 
 const MaximizingRevenue = () => {
   return (
     <section className="bg-gray-100 py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-screen-xl mx-auto text-center">
-        <h1 className="text-4xl md:text-5xl font-regular text-[#250168] mb-4">
+        <h1 className={`text-3xl sm:text-4xl md:text-5xl font-normal text-[#250168] mb-4 ${styles.headingAnimated}`}>
           Maximizing Revenue
         </h1>
-        <p className="text-xl md:text-2xl font-semibold text-black mb-8 mt-4">
+
+        <p className={`text-lg sm:text-xl md:text-2xl font-semibold text-black mb-8 mt-4 ${styles.subheadingAnimated}`}>
           You are responsible, too!
         </p>
-        <p className="text-lg text-gray-700 mb-12 leading-relaxed max-w-4xl mx-auto">
-          Let&apos;s face it—everyone is responsible for maximizing their
-          company&apos;s revenue! It&apos;s not the sales team&apos;s
-          responsibility: you must help, too! You strengthen strategic alignment
-          as a CEO, craft clear messaging as MarCom, manage the talent and
-          culture war as HR, negotiate deals as procurement, influence and
-          increase conversion rates as marketing, and build products and
-          services to fulfill customers&apos; needs as a product team.
+
+        <p className={`${styles.paragraphAnimated} text-base sm:text-lg text-gray-700 mb-12 leading-relaxed max-w-4xl mx-auto`}>
+          Let&apos;s face it—everyone is responsible for maximizing their company&apos;s revenue! It&apos;s not the sales team&apos;s responsibility: you must help, too! You strengthen strategic alignment as a CEO, craft clear messaging as MarCom, manage the talent and culture war as HR, negotiate deals as procurement, influence and increase conversion rates as marketing, and build products and services to fulfill customers&apos; needs as a product team.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mb-12 w-full">
           <ArcChart
             percent={95}
             color="#111827"

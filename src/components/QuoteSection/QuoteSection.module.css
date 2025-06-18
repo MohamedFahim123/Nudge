@@ -1,6 +1,19 @@
 .quoteSection {
-  background-image: url("../../../public/images/Welcome-2-scaled.png");
+  background-image: url("/images/Welcome-2-scaled.png");
   background-size: cover;
   background-position: center;
   height: 90vh;
+}
+.quoteText {
+  padding: 2rem;
+  border-radius: 0.5rem;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1s ease-out forwards;
+}
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

@@ -5,20 +5,20 @@ import Link from "next/link";
 const CEOSection = () => {
   return (
     <section
-      className={`${styles.CEOSection} relative py-24 px-4 sm:px-6 lg:px-8 bg-cover bg-center`}
+      className={`${styles.CEOSection} py-20 px-4 sm:px-6 lg:px-8`}
     >
       <div
-        className={`${styles.CEOSectionContent} text-white max-w-screen-xl mx-auto h-full flex flex-col justify-between`}
+        className={`${styles.CEOSectionContent} text-white max-w-screen-xl mx-auto flex flex-col gap-8 justify-between h-full px-4`}
       >
         <div>
-          <h2 className="text-4xl md:text-6xl font-regular mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-normal mb-4">
             Saana Azzam
           </h2>
 
-          <p className="text-3xl mb-2">CEO of MENA Speakers,</p>
-          <p className="text-3xl mb-6">Chief Inspiration Officer</p>
+          <p className="text-2xl sm:text-3xl mb-2">CEO of MENA Speakers,</p>
+          <p className="text-2xl sm:text-3xl mb-6">Chief Inspiration Officer</p>
 
-          <p className="text-xl max-w-lg">
+          <p className="text-base sm:text-lg md:text-xl max-w-2xl">
             Because everything at Nudge Summit 2025 promises to be a memorable
             experience, Søana Azzam, the CEO of MENA Speakers, the #1 speakers
             bureau in the MENA Region, will be our master of ceremonies,
@@ -29,8 +29,8 @@ const CEOSection = () => {
 
         <div>
           <Link
-            href={""}
-            className="px-8 py-4 text-xl uppercase bg-[#5bf286] border border-[#5bf286] text-white font-semibold transition-all hover:bg-white hover:text-[#5bf286]"
+            href=""
+            className="inline-block px-6 sm:px-8 py-3 sm:py-4 text-lg sm:text-xl uppercase bg-[#5bf286] border border-[#5bf286] text-white font-semibold transition-all duration-300 hover:bg-white hover:text-[#5bf286]"
           >
             In-person
           </Link>

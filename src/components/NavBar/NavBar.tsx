@@ -3,13 +3,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 
 const NavBar = () => {
   const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
+  console.log(isOpen);
+
   return (
     <nav className="bg-[#1E1E1E] py-5">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-4">
+      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-4 px-4">
         <Link
           href="/home"
           className="flex items-center space-x-3 rtl:space-x-reverse"
@@ -22,12 +25,13 @@ const NavBar = () => {
             alt="Logo"
           />
         </Link>
+
         <button
-          data-collapse-toggle="navbar-default"
+          onClick={() => setIsOpen(!isOpen)}
           type="button"
-          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-400 rounded-lg md:hidden hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
           aria-controls="navbar-default"
-          aria-expanded="false"
+          aria-expanded={isOpen}
         >
           <span className="sr-only">Open main menu</span>
           <svg
@@ -46,10 +50,15 @@ const NavBar = () => {
             />
           </svg>
         </button>
-        <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-          <ul className="font-medium flex flex-col items-center p-4 md:p-0 mt-4 border rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
+
+        <div
+          className={`w-full md:block md:w-auto ${isOpen ? "block" : "hidden"}`}
+          id="navbar-default"
+        >
+          <ul className="font-medium flex flex-col items-center p-4 md:p-0 mt-4 border border-gray-700 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
             <li>
               <Link
+                onClick={() => setIsOpen(!isOpen)}
                 href="/home"
                 className={`block py-2 px-3 ${
                   pathname === "/home" ? "text-[#5bf286]" : "text-white"
@@ -60,6 +69,7 @@ const NavBar = () => {
             </li>
             <li>
               <Link
+                onClick={() => setIsOpen(!isOpen)}
                 href="/summit"
                 className={`block py-2 px-3 ${
                   pathname === "/summit" ? "text-[#5bf286]" : "text-white"
@@ -70,6 +80,7 @@ const NavBar = () => {
             </li>
             <li>
               <Link
+                onClick={() => setIsOpen(!isOpen)}
                 href="/summit/agenda"
                 className={`block py-2 px-3 ${
                   pathname === "/summit/agenda"
@@ -82,6 +93,7 @@ const NavBar = () => {
             </li>
             <li>
               <Link
+                onClick={() => setIsOpen(!isOpen)}
                 href="/contact-us"
                 className={`block py-2 px-3 ${
                   pathname === "/contact-us/" ? "text-[#5bf286]" : "text-white"
@@ -90,8 +102,9 @@ const NavBar = () => {
                 Contact Us
               </Link>
             </li>
-            <li className="block py-2 px-3">
+            <li className="block py-2">
               <Link
+                onClick={() => setIsOpen(!isOpen)}
                 href="/auth/login"
                 className="px-6 py-2 bg-[#5bf286] border border-[#5bf286] text-white font-semibold transition-all hover:bg-white hover:text-[#5bf286]"
               >

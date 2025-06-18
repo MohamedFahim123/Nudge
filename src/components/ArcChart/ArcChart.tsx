@@ -9,24 +9,36 @@ type ArcChartProps = {
 };
 
 const ArcChart = ({ percent, color, label }: ArcChartProps) => {
-  const radius = 50;
+  const radius = 80;
   const circumference = Math.PI * radius;
   const progress = (percent / 100) * circumference;
 
   return (
-    <div className="flex flex-col items-center">
-      <svg width="300" height="100" viewBox="0 0 140 80" className="mb-2">
+    <motion.div
+      className="flex flex-col items-center p-4 bg-white rounded-lg shadow-md h-full"
+      initial={{ opacity: 0, x: -50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 1, ease: "easeOut" }}
+    >
+      <svg
+        width="100%"
+        height="160"
+        viewBox="0 0 200 120"
+        className="mb-4"
+        preserveAspectRatio="xMidYMid meet"
+      >
         <path
-          d="M 10 70 A 60 60 0 0 1 130 70"
+          d="M 20 100 A 80 80 0 0 1 180 100"
           fill="none"
           stroke="#e5e7eb"
-          strokeWidth="10"
+          strokeWidth="12"
         />
         <motion.path
-          d="M 10 70 A 60 60 0 0 1 130 70"
+          d="M 20 100 A 80 80 0 0 1 180 100"
           fill="none"
           stroke={color}
-          strokeWidth="10"
+          strokeWidth="12"
           strokeDasharray={circumference}
           strokeDashoffset={circumference - progress}
           initial={{ strokeDashoffset: circumference }}
@@ -34,9 +46,18 @@ const ArcChart = ({ percent, color, label }: ArcChartProps) => {
           transition={{ duration: 1.5, ease: "easeOut" }}
         />
       </svg>
-      <span className={`text-3xl md:text-4xl font-bold`} style={{ color,marginTop: "-50px" }}>{percent}%</span>
-      <p className="text-md text-center text-gray-700 mt-2 w-80">{label}</p>
-    </div>
+
+      <span
+        className="text-4xl md:text-5xl font-bold -mt-16 mb-4"
+        style={{ color }}
+      >
+        {percent}%
+      </span>
+
+      <p className="text-sm md:text-base text-center text-gray-700 w-full max-w-xs">
+        {label}
+      </p>
+    </motion.div>
   );
 };
 

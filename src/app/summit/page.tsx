@@ -33,15 +33,15 @@ const SummitPage = () => {
       <ExpectationSlider />
       <SummitInfo />
       <TicketSection />
-      <h2 className="underline">
+      <section className="w-full">
         <Link
-          href={"/ticket"}
-          className="h-32 w-full bg-green-400 flex items-center justify-center text-black text-5xl font-bold transition-all duration-300 hover:text-white"
+          href="/ticket"
+          className="h-24 px-4 sm:h-28 md:h-32 w-full hover:underline bg-green-400 flex items-center justify-center text-black text-3xl sm:text-4xl md:text-5xl font-bold gap-4 transition-all duration-300 hover:text-white"
         >
-          <MdOutlineArrowRightAlt />
+          <MdOutlineArrowRightAlt size={40} />
           Get Your Ticket
         </Link>
-      </h2>
+      </section>
       <DeadLineSection />
     </>
   );

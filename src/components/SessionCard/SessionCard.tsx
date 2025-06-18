@@ -17,31 +17,30 @@ const SessionCard = ({
   };
 }) => (
   <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
+    initial={{ opacity: 0, x: -100, scale: 0.95 }}
+    whileInView={{ opacity: 1, x: 0, scale: 1 }}
     viewport={{ once: true }}
-    transition={{ duration: 0.6 }}
-    className="flex items-start gap-4 p-4 bg-white rounded-lg shadow-md"
+    transition={{ duration: 0.6, ease: "easeOut" }}
+    className="flex flex-col sm:flex-row items-center sm:items-start gap-4 p-4 bg-white rounded-xl shadow-md"
   >
-    <div className="w-30 h-30 flex items-center justify-center bg-[#250168] rounded-md text-white">
-      {session.icon
-        ? session.icon
-        : session.speaker && (
-            <Image
-              src={session.speaker}
-              alt="Speaker"
-              width={100}
-              height={100}
-              className="rounded-full"
-            />
-          )}
+    <div className="w-24 h-24 min-w-[6rem] flex items-center justify-center bg-[#250168] rounded-full overflow-hidden text-white">
+      {session.icon ? (
+        session.icon
+      ) : session.speaker ? (
+        <Image
+          src={session.speaker}
+          alt="Speaker"
+          width={96}
+          height={96}
+          className="rounded-full object-cover"
+        />
+      ) : null}
     </div>
-    <div>
-      <h4 className="font-bold text-md text-black">{session.time}</h4>
-      <h5 className="text-lg text-purple-800 font-semibold">{session.title}</h5>
-      <p className="text-gray-600 text-sm mt-1 max-w-xl">
-        {session.description}
-      </p>
+
+    <div className="text-center sm:text-left">
+      <h4 className="font-semibold text-base text-black">{session.time}</h4>
+      <h5 className="text-lg text-purple-800 font-bold">{session.title}</h5>
+      <p className="text-gray-600 text-sm mt-1">{session.description}</p>
     </div>
   </motion.div>
 );

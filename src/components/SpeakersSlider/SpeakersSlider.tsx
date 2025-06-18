@@ -7,7 +7,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
-
+import styles from "./SpeakersSlider.module.css";
 const SpeakersSlider = () => {
   const speakers = [
     {
@@ -58,27 +58,26 @@ const SpeakersSlider = () => {
   ];
 
   return (
-    <section className="">
-      <h2 className="text-center text-2xl py-8 md:text-5xl font-regular text-[#231F20] bg-[#5BF286]">
+    <section>
+      <h2 className={`${styles.speakerFadeIn} text-center text-2xl py-8 md:text-5xl font-normal text-[#231F20] bg-[#5BF286]`}>
         Top Speakers & Experts
       </h2>
-      <div className="bg-[#250168] py-16">
+      <div className="bg-[#250168] py-16 px-4 sm:px-6">
         <div className="max-w-screen-xl mx-auto">
           <Swiper
             modules={[Navigation, Autoplay]}
             spaceBetween={30}
             autoplay={{ delay: 5000 }}
             slidesPerView={1}
-            pagination={{ clickable: true }}
             navigation
             loop={true}
             className="speakers-swiper"
           >
             {speakers.map((speaker) => (
               <SwiperSlide key={speaker.id}>
-                <div className="rounded-xl p-8 md:p-12">
-                  <div className="flex flex-col md:flex-row gap-8">
-                    <div className="w-full md:w-2/5 bg-gray-200 rounded-lg h-64 md:h-96 flex items-center justify-center">
+                <div className={`rounded-xl p-4 sm:p-8 md:p-12`}>
+                  <div className="flex flex-col md:flex-row gap-8 items-center">
+                    <div className="w-full md:w-2/5 bg-gray-200 rounded-lg h-64 md:h-96 flex items-center justify-center overflow-hidden">
                       <Image
                         src={speaker.src}
                         alt={speaker.name}
@@ -88,20 +87,14 @@ const SpeakersSlider = () => {
                       />
                     </div>
 
-                    <div className="w-full md:w-3/5">
-                      <h3 className="text-2xl md:text-3xl font-regular text-white">
-                        {speaker.name}
-                      </h3>
-                      <p className="text-xl md:text-2xl text-white mt-2 italic">
-                        {speaker.title}
-                      </p>
+                    <div className="w-full md:w-3/5 text-white text-left">
+                      <h3 className="text-2xl md:text-3xl">{speaker.name}</h3>
+                      <p className="text-xl md:text-2xl mt-2 italic">{speaker.title}</p>
                       <p className="text-lg md:text-xl text-green-400 mt-1 italic">
                         {speaker.subtitle}
                       </p>
-
-                      <div className="border-t border-gray-200 my-6"></div>
-
-                      <p className="text-white leading-relaxed">
+                      <div className="border-t border-gray-200 my-4 md:my-6"></div>
+                      <p className="leading-relaxed text-sm sm:text-base md:text-lg">
                         {speaker.description}
                       </p>
                     </div>
@@ -117,3 +110,5 @@ const SpeakersSlider = () => {
 };
 
 export default React.memo(SpeakersSlider);
+
+

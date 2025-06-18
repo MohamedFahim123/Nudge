@@ -4,6 +4,7 @@
   background-position: center;
   height: 90vh;
   position: relative;
+  z-index: 1;
 }
 .CEOSection::after {
   content: "";
@@ -18,4 +19,17 @@
 .CEOSectionContent {
   position: relative;
   z-index: 2;
+  animation: fadeSlideUp 1.2s ease-out both;
+  padding: 1rem;
+}
+
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
