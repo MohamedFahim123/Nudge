@@ -26,7 +26,7 @@ export default function AuthLayout({
         <div
           className={`${
             pathName === "/auth/login" && styles.paddingBlockNone
-          } ${styles.auth_container}`}
+          } ${styles.auth_container} ${pathName === "/auth/register" && styles.registerStyle}`}
         >
           {children}
         </div>

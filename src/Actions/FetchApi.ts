@@ -1,6 +1,6 @@
 "use server";
 
-const baseUrl: string = "";
+const baseUrl: string = "https://nudge.valureach.com/api";
 
 interface FetchServerDataOptions extends RequestInit {
   next?: {

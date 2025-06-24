@@ -1,24 +1,55 @@
 "use client";
 
+import { fetchApi } from "@/Actions/FetchApi";
 import { FormAuthInputs } from "@/app/auth/utils/interfaces";
 import Link from "next/link";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import AuthBtnSubmit from "../AuthBtnSubmit/AuthBtnSubmit";
+import { useToast } from "../ToastContext/ToastContext";
 import styles from "./loginForm.module.css";
+
+interface resShape {
+  message: string;
+  data: { token: string };
+  status: number;
+  errors: { [key: string]: string };
+}
 
 const LoginForm = () => {
   const [viewPassword, setViewPassword] = useState<boolean>(false);
   const handleToggleShowPassword = () => setViewPassword(!viewPassword);
+  const { showToast } = useToast();
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors, isSubmitting },
   } = useForm<FormAuthInputs>();
 
-  const onSubmit: SubmitHandler<FormAuthInputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<FormAuthInputs> = async (data) => {
+    const res = await fetchApi<resShape>("login", {
+      method: "POST",
+      body: JSON.stringify(data) as BodyInit,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    if (res.status !== 200 && res.errors) {
+      Object.entries(res.errors).forEach(([key, value]) => {
+        setError(key as keyof FormAuthInputs, {
+          type: "server",
+          message: Array.isArray(value) ? value[0] : String(value),
+        });
+        showToast(Array.isArray(value) ? value[0] : String(value), "error");
+      });
+    } else if (res.status === 200) {
+      showToast(res.message, "success");
+    }
+  };
 
   return (
     <form

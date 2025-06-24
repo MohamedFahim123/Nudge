@@ -12,22 +12,7 @@
   font-style: normal;
 }
 
-/* body {
-  font-family: "Myriad Pro", sans-serif;
-  color: #ffffff;
-}
-nav,
-footer a,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-button {
-  font-family: "Space Mono", sans-serif;
-} */
-body{
+body {
   font-family: "Myriad", sans-serif;
 }
 
@@ -40,6 +25,18 @@ h6,
 button {
   font-family: "AgencyFB", sans-serif;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+
+/* swipers arrows */
 .speakers-swiper .swiper-button-prev {
   left: calc(100% - 120px) !important;
   top: 35px !important;

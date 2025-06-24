@@ -38,3 +38,6 @@
   cursor: pointer;
   color: #000000;
 }
+.formRegInput {
+  margin-block: 0 !important;
+}

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
 import AuthBtnSubmit from "../AuthBtnSubmit/AuthBtnSubmit";
 import styles from "../LoginForm/loginForm.module.css";
+import React from "react";
 
 const ForgetPasswordForm = () => {
   const {
@@ -54,4 +55,4 @@ const ForgetPasswordForm = () => {
   );
 };
 
-export default ForgetPasswordForm;
+export default React.memo(ForgetPasswordForm);
