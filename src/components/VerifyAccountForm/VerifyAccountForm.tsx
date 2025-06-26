@@ -1,17 +1,34 @@
 "use client";
 
+import { fetchApi } from "@/Actions/FetchApi";
+import { getTokenFromServerCookies } from "@/Actions/TokenHandlers";
 import { FormAuthInputs } from "@/app/auth/utils/interfaces";
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import AuthBtnSubmit from "../AuthBtnSubmit/AuthBtnSubmit";
 import styles from "../LoginForm/loginForm.module.css";
+import { useToast } from "../ToastContext/ToastContext";
+
+interface resShape {
+  ok: unknown;
+  message: string;
+  data: {
+    token: string;
+  };
+  status: number;
+  errors: { [key: string]: string };
+}
 
 const VerifyAccountForm = () => {
   const {
     register,
     handleSubmit,
+    setError,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm<FormAuthInputs>();
+  const { showToast } = useToast();
+  // const router = useRouter();
 
   const [countdown, setCountdown] = useState<number>(60);
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
@@ -33,8 +50,61 @@ const VerifyAccountForm = () => {
     setCountdown(60);
     setIsDisabled(true);
   };
+  const onSubmit: SubmitHandler<FormAuthInputs> = async (data) => {
+    try {
+      const token = await getTokenFromServerCookies();
+      const response = await fetchApi<resShape>("verify-account", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        cache: "no-cache",
+      });
 
-  const onSubmit: SubmitHandler<FormAuthInputs> = (data) => console.log(data);
+      handleResponse(response);
+    } catch (error) {
+      handleSubmissionError(error);
+    }
+  };
+  const handleResponse = async (response: resShape) => {
+    if (response.status !== 200 && response.errors) {
+      handleErrors(response.errors);
+      return;
+    }
+
+    if (response.status === 200) {
+      showToast(response.message, "success");
+      reset();
+    }
+  };
+  const handleErrors = (errors: Record<string, unknown>) => {
+    Object.entries(errors).forEach(([field, error]) => {
+      const errorMessage = normalizeErrorMessage(error);
+      setError(field as keyof FormAuthInputs, {
+        type: "server",
+        message: errorMessage,
+      });
+      showToast(errorMessage, "error");
+    });
+  };
+  const normalizeErrorMessage = (error: unknown): string => {
+    if (Array.isArray(error)) return error[0];
+    if (error instanceof Error) return error.message;
+    return String(error);
+  };
+
+  const handleSubmissionError = (error: unknown) => {
+    console.error("Form submission failed:", error);
+    showToast(
+      error instanceof Error
+        ? error.message
+        : "An unexpected error occurred during submission",
+      "error"
+    );
+  };
 
   return (
     <form

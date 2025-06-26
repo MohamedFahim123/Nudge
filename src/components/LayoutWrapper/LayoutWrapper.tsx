@@ -12,7 +12,7 @@ export default function LayoutWrapper({
 }) {
   const pathname = usePathname();
 
-  const isAuthPage = pathname.startsWith("/auth");
+  const isAuthPage = pathname.startsWith("/auth") || pathname.startsWith("/dashboard");
 
   return (
     <>

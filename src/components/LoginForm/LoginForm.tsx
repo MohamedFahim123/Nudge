@@ -1,6 +1,7 @@
 "use client";
 
 import { fetchApi } from "@/Actions/FetchApi";
+import { setServerCookie } from "@/Actions/TokenHandlers";
 import { FormAuthInputs } from "@/app/auth/utils/interfaces";
 import Link from "next/link";
 import { useState } from "react";
@@ -9,10 +10,28 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import AuthBtnSubmit from "../AuthBtnSubmit/AuthBtnSubmit";
 import { useToast } from "../ToastContext/ToastContext";
 import styles from "./loginForm.module.css";
+import { useRouter } from "next/navigation";
 
 interface resShape {
+  ok: unknown;
   message: string;
-  data: { token: string };
+  data: {
+    audience: {
+      id: number;
+      name: string;
+      email: string;
+      phone: string;
+      role: string;
+      company: string;
+      linkedin_profile: string;
+      profile_image: string;
+      passport_file: string;
+      profile_completed: boolean;
+      email_verified: boolean;
+      [key: string]: string | number | boolean;
+    };
+    token: string;
+  };
   status: number;
   errors: { [key: string]: string };
 }
@@ -22,33 +41,74 @@ const LoginForm = () => {
   const handleToggleShowPassword = () => setViewPassword(!viewPassword);
   const { showToast } = useToast();
   const [isChecked, setIsChecked] = useState<boolean>(false);
+  const router = useRouter();
   const {
     register,
     handleSubmit,
     setError,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm<FormAuthInputs>();
-
-  const onSubmit: SubmitHandler<FormAuthInputs> = async (data) => {
-    const res = await fetchApi<resShape>("login", {
-      method: "POST",
-      body: JSON.stringify(data) as BodyInit,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    });
-    if (res.status !== 200 && res.errors) {
-      Object.entries(res.errors).forEach(([key, value]) => {
-        setError(key as keyof FormAuthInputs, {
-          type: "server",
-          message: Array.isArray(value) ? value[0] : String(value),
-        });
-        showToast(Array.isArray(value) ? value[0] : String(value), "error");
+  const onSubmit: SubmitHandler<FormAuthInputs> = async (formData) => {
+    try {
+      const response = await fetchApi<resShape>("login", {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        cache: "no-cache",
       });
-    } else if (res.status === 200) {
-      showToast(res.message, "success");
+
+      handleResponse(response);
+    } catch (error) {
+      handleSubmissionError(error);
     }
+  };
+  const handleResponse = async (response: resShape) => {
+    if (response.status !== 200 && response.errors) {
+      handleErrors(response.errors);
+      return;
+    }
+
+    if (response.status === 200) {
+      const token = response.data.token;
+      await setServerCookie(token);
+      showToast(response.message, "success");
+      reset();
+      if(response.data.audience.email_verified) {
+        router.push("/dashboard/profile");
+      } else {
+        router.push("/auth/verify-account");
+      }
+      // router.push("/dashboard/profile");
+    }
+  };
+  const handleErrors = (errors: Record<string, unknown>) => {
+    Object.entries(errors).forEach(([field, error]) => {
+      const errorMessage = normalizeErrorMessage(error);
+      setError(field as keyof FormAuthInputs, {
+        type: "server",
+        message: errorMessage,
+      });
+      showToast(errorMessage, "error");
+    });
+  };
+  const normalizeErrorMessage = (error: unknown): string => {
+    if (Array.isArray(error)) return error[0];
+    if (error instanceof Error) return error.message;
+    return String(error);
+  };
+
+  const handleSubmissionError = (error: unknown) => {
+    console.error("Form submission failed:", error);
+    showToast(
+      error instanceof Error
+        ? error.message
+        : "An unexpected error occurred during submission",
+      "error"
+    );
   };
 
   return (

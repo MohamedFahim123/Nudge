@@ -7,20 +7,122 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import AuthBtnSubmit from "../AuthBtnSubmit/AuthBtnSubmit";
 import styles from "../LoginForm/loginForm.module.css";
 import Image from "next/image";
+import { fetchApi } from "@/Actions/FetchApi";
+import { useToast } from "../ToastContext/ToastContext";
+
+interface resShape {
+  message: string;
+  data: { token: string };
+  status: number;
+  errors: { [key: string]: string };
+}
 
 const RegisterForm = () => {
   const [viewPassword, setViewPassword] = useState<boolean>(false);
   const handleToggleShowPassword = () => setViewPassword(!viewPassword);
   const [profilePreview, setProfilePreview] = useState<string | null>(null);
   const [passportName, setPassportName] = useState<string>("");
+  const { showToast } = useToast();
 
   const {
     register,
     handleSubmit,
+    setError,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm<FormAuthInputs>();
 
-  const onSubmit: SubmitHandler<FormAuthInputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<FormAuthInputs> = async (data) => {
+    try {
+      const formData = createFormData(data);
+
+      const response = await submitFormData(formData);
+
+      handleResponse(response);
+    } catch (error) {
+      handleSubmissionError(error);
+    }
+  };
+
+  const createFormData = (data: FormAuthInputs): FormData => {
+    const formData = new FormData();
+    const formFields: Array<keyof FormAuthInputs> = [
+      "name",
+      "email",
+      "password",
+      "phone",
+      "role",
+      "company",
+      "linkedin_profile",
+      "profile_image",
+      "passport_file",
+    ];
+
+    formFields.forEach((field) => {
+      const value = data[field];
+      if (value !== undefined && value !== null) {
+        if (value instanceof FileList) {
+          formData.append(field, value[0]);
+        } else if (value instanceof File) {
+          formData.append(field, value);
+        } else {
+          formData.append(field, value);
+        }
+      }
+    });
+
+    return formData;
+  };
+
+  const submitFormData = async (formData: FormData): Promise<resShape> => {
+    return await fetchApi<resShape>("register", {
+      method: "POST",
+      body: formData,
+      headers: {
+        Accept: "application/json",
+      },
+      cache: "no-cache",
+    });
+  };
+
+  const handleResponse = (response: resShape) => {
+    if (response.status !== 200 && response.errors) {
+      handleErrors(response.errors);
+      return;
+    }
+
+    if (response.status === 200) {
+      showToast(response.message, "success");
+      reset();
+    }
+  };
+
+  const handleErrors = (errors: Record<string, unknown>) => {
+    Object.entries(errors).forEach(([field, error]) => {
+      const errorMessage = normalizeErrorMessage(error);
+      setError(field as keyof FormAuthInputs, {
+        type: "server",
+        message: errorMessage,
+      });
+      showToast(errorMessage, "error");
+    });
+  };
+
+  const normalizeErrorMessage = (error: unknown): string => {
+    if (Array.isArray(error)) return error[0];
+    if (error instanceof Error) return error.message;
+    return String(error);
+  };
+
+  const handleSubmissionError = (error: unknown) => {
+    console.error("Form submission failed:", error);
+    showToast(
+      error instanceof Error
+        ? error.message
+        : "An unexpected error occurred during submission",
+      "error"
+    );
+  };
 
   return (
     <form

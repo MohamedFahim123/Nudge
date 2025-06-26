@@ -1,14 +1,23 @@
 "use client";
 
+import { getTokenFromServerCookies } from "@/Actions/TokenHandlers";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { CgProfile } from "react-icons/cg";
 
 const NavBar = () => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  console.log(isOpen);
+  const [token, setToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      const cookiesToken: string = await getTokenFromServerCookies();
+      setToken(cookiesToken);
+    })();
+  }, []);
 
   return (
     <nav className="bg-[#1E1E1E] py-5">
@@ -95,22 +104,34 @@ const NavBar = () => {
               <Link
                 onClick={() => setIsOpen(!isOpen)}
                 href="/contact-us"
-                className={`block py-2 px-3 ${
-                  pathname === "/contact-us/" ? "text-[#5bf286]" : "text-white"
+                className={`block px-3 ${
+                  pathname === "/contact-us" ? "text-[#5bf286]" : "text-white"
                 } rounded-sm md:bg-transparent md:p-0`}
               >
                 Contact Us
               </Link>
             </li>
-            <li className="block py-2">
-              <Link
-                onClick={() => setIsOpen(!isOpen)}
-                href="/auth/login"
-                className="px-6 py-2 bg-[#5bf286] border border-[#5bf286] text-white font-semibold transition-all hover:bg-white hover:text-[#5bf286]"
-              >
-                Login
-              </Link>
-            </li>
+            {token ? (
+              <li>
+                <Link
+                  onClick={() => setIsOpen(!isOpen)}
+                  href="/dashboard/profile"
+                  className="text-white hover:text-[#5bf286] ease-in-out duration-300 transition-all flex justify-center items-center"
+                >
+                  <CgProfile size={28} />
+                </Link>
+              </li>
+            ) : (
+              <li className="block py-2">
+                <Link
+                  onClick={() => setIsOpen(!isOpen)}
+                  href="/auth/login"
+                  className="px-6 py-2 bg-[#5bf286] border border-[#5bf286] text-white font-semibold transition-all hover:bg-white hover:text-[#5bf286]"
+                >
+                  Login
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </div>

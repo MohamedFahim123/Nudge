@@ -2,9 +2,9 @@
 
 import { cookies } from "next/headers";
 
-export async function setServerCookie(name: string, value: string) {
+export async function setServerCookie(value: string) {
   const cookieStore = await cookies();
-  cookieStore.set(name, value, {
+  cookieStore.set("NUDGE_TOKEN", value, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     path: "/",
@@ -15,7 +15,7 @@ export async function setServerCookie(name: string, value: string) {
 export async function getTokenFromServerCookies() {
   const cookieStore = await cookies();
   const token = cookieStore.get("NUDGE_TOKEN")?.value;
-  return token;
+  return token as string;
 }
 
 export async function removeTokenFromServerCookies() {
