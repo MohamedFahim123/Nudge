@@ -1,12 +1,26 @@
 "use client";
 
+import { fetchApi } from "@/Actions/FetchApi";
 import { FormAuthInputs } from "@/app/auth/utils/interfaces";
+import { handleSubmissionError } from "@/utils/handleSubmitError";
+import { normalizeErrorMessage } from "@/utils/normalizeErrorMessage";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import AuthBtnSubmit from "../AuthBtnSubmit/AuthBtnSubmit";
 import styles from "../LoginForm/loginForm.module.css";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useToast } from "../ToastContext/ToastContext";
+interface resShape {
+  ok: unknown;
+  message: string;
+  data: {
+    token: string;
+  };
+  status: number;
+  errors: { [key: string]: string };
+}
 
 const ResetPasswordForm = () => {
   const [viewPassword, setViewPassword] = useState<boolean>(false);
@@ -35,14 +49,59 @@ const ResetPasswordForm = () => {
     setCountdown(60);
     setIsDisabled(true);
   };
-
+  const { showToast } = useToast();
   const {
     register,
     handleSubmit,
+    reset,
+    setError,
     formState: { errors, isSubmitting },
   } = useForm<FormAuthInputs>();
+  const router = useRouter();
 
-  const onSubmit: SubmitHandler<FormAuthInputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<FormAuthInputs> = async (data) => {
+    try {
+      const response = await fetchApi<resShape>("reset-password", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        cache: "no-cache",
+      });
+
+      handleResponse(response);
+    } catch (error) {
+      handleSubmissionError(error, showToast);
+    }
+  };
+
+  const handleResponse = async (response: resShape) => {
+    if (response.status !== 200 && response.errors) {
+      handleErrors(response.errors);
+      return;
+    }
+
+    if (response.status === 200) {
+      showToast(response.message, "success");
+      reset();
+      router.push("/auth/reset-password");
+    }
+  };
+
+  const handleErrors = (errors: Record<string, unknown>) => {
+    if (!errors || Object.keys(errors).length === 0) return;
+
+    Object.entries(errors).forEach(([field, error]) => {
+      const errorMessage = normalizeErrorMessage(error);
+      setError(field as keyof FormAuthInputs, {
+        type: "server",
+        message: errorMessage,
+      });
+      showToast(errorMessage, "error");
+    });
+  };
 
   return (
     <form

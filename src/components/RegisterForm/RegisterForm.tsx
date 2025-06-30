@@ -1,13 +1,15 @@
 "use client";
 
+import { fetchApi } from "@/Actions/FetchApi";
 import { FormAuthInputs } from "@/app/auth/utils/interfaces";
+import { handleSubmissionError } from "@/utils/handleSubmitError";
+import { normalizeErrorMessage } from "@/utils/normalizeErrorMessage";
+import Image from "next/image";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import AuthBtnSubmit from "../AuthBtnSubmit/AuthBtnSubmit";
 import styles from "../LoginForm/loginForm.module.css";
-import Image from "next/image";
-import { fetchApi } from "@/Actions/FetchApi";
 import { useToast } from "../ToastContext/ToastContext";
 
 interface resShape {
@@ -40,7 +42,7 @@ const RegisterForm = () => {
 
       handleResponse(response);
     } catch (error) {
-      handleSubmissionError(error);
+      handleSubmissionError(error, showToast);
     }
   };
 
@@ -98,6 +100,8 @@ const RegisterForm = () => {
   };
 
   const handleErrors = (errors: Record<string, unknown>) => {
+    if (!errors || Object.keys(errors).length === 0) return;
+
     Object.entries(errors).forEach(([field, error]) => {
       const errorMessage = normalizeErrorMessage(error);
       setError(field as keyof FormAuthInputs, {
@@ -106,22 +110,6 @@ const RegisterForm = () => {
       });
       showToast(errorMessage, "error");
     });
-  };
-
-  const normalizeErrorMessage = (error: unknown): string => {
-    if (Array.isArray(error)) return error[0];
-    if (error instanceof Error) return error.message;
-    return String(error);
-  };
-
-  const handleSubmissionError = (error: unknown) => {
-    console.error("Form submission failed:", error);
-    showToast(
-      error instanceof Error
-        ? error.message
-        : "An unexpected error occurred during submission",
-      "error"
-    );
   };
 
   return (

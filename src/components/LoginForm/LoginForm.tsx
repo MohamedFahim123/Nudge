@@ -3,14 +3,16 @@
 import { fetchApi } from "@/Actions/FetchApi";
 import { setServerCookie } from "@/Actions/TokenHandlers";
 import { FormAuthInputs } from "@/app/auth/utils/interfaces";
+import { handleSubmissionError } from "@/utils/handleSubmitError";
+import { normalizeErrorMessage } from "@/utils/normalizeErrorMessage";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import AuthBtnSubmit from "../AuthBtnSubmit/AuthBtnSubmit";
 import { useToast } from "../ToastContext/ToastContext";
 import styles from "./loginForm.module.css";
-import { useRouter } from "next/navigation";
 
 interface resShape {
   ok: unknown;
@@ -63,7 +65,7 @@ const LoginForm = () => {
 
       handleResponse(response);
     } catch (error) {
-      handleSubmissionError(error);
+      handleSubmissionError(error, showToast);
     }
   };
   const handleResponse = async (response: resShape) => {
@@ -77,15 +79,16 @@ const LoginForm = () => {
       await setServerCookie(token);
       showToast(response.message, "success");
       reset();
-      if(response.data.audience.email_verified) {
+      if (response.data.audience.email_verified) {
         router.push("/dashboard/profile");
       } else {
         router.push("/auth/verify-account");
       }
-      // router.push("/dashboard/profile");
     }
   };
   const handleErrors = (errors: Record<string, unknown>) => {
+    if (!errors || Object.keys(errors).length === 0) return;
+
     Object.entries(errors).forEach(([field, error]) => {
       const errorMessage = normalizeErrorMessage(error);
       setError(field as keyof FormAuthInputs, {
@@ -94,21 +97,6 @@ const LoginForm = () => {
       });
       showToast(errorMessage, "error");
     });
-  };
-  const normalizeErrorMessage = (error: unknown): string => {
-    if (Array.isArray(error)) return error[0];
-    if (error instanceof Error) return error.message;
-    return String(error);
-  };
-
-  const handleSubmissionError = (error: unknown) => {
-    console.error("Form submission failed:", error);
-    showToast(
-      error instanceof Error
-        ? error.message
-        : "An unexpected error occurred during submission",
-      "error"
-    );
   };
 
   return (
