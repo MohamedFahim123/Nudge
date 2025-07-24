@@ -12,8 +12,19 @@
   font-style: normal;
 }
 
+.input {
+  @apply w-full px-4 py-2 border rounded-md;
+}
+.btn {
+  @apply px-4 py-2 border border-gray-300 rounded hover:bg-gray-100;
+}
+
 body {
   font-family: "Myriad", sans-serif;
+}
+img {
+  width: auto;
+  height: auto;
 }
 
 h1,
@@ -35,6 +46,9 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
+input.errorInput {
+  border: 1px solid #ff2020 !important;
+}
 
 /* swipers arrows */
 .speakers-swiper .swiper-button-prev {

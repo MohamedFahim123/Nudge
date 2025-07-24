@@ -1,0 +1,31 @@
+import Loader from "@/components/Loader/Loader";
+import TicketsFullContent from "@/components/TicketsFullContent/TicketsFullContent";
+import { Metadata } from "next";
+import { Suspense } from "react";
+
+export const metadata: Metadata = {
+  title: "Nudge | Tickets",
+  description: "Tickets Page",
+};
+
+const TicketsPage = () => {
+  return (
+    <Suspense fallback={<Loader />}>
+      <div className="flex justify-between items-center border border-gray-200 p-4 rounded-t-lg">
+        <h1 className="text-3xl font-bold">Tickets</h1>
+        <button
+          title="Buy Ticket"
+          className="outline-none px-4 py-2 rounded-lg shadow-md transistion-all duration-300 bg-purple-600 text-white cursor-pointer border border-purple-600 hover:bg-white hover:text-purple-600"
+          type="button"
+        >
+          Buy A Ticket
+        </button>
+      </div>
+      <div className="p-4 min-h-40 border border-gray-200 rounded-b-lg">
+        <TicketsFullContent />
+      </div>
+    </Suspense>
+  );
+};
+
+export default TicketsPage;

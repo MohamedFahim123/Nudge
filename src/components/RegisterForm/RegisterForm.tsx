@@ -1,9 +1,10 @@
 "use client";
 
-import { fetchApi } from "@/Actions/FetchApi";
+import { createFormData } from "@/Actions/CreateFormData";
+import { handleErrors, handleResponse } from "@/Actions/HandleResponse";
+import { submitFormData } from "@/Actions/SubmitFormData";
 import { FormAuthInputs } from "@/app/auth/utils/interfaces";
 import { handleSubmissionError } from "@/utils/handleSubmitError";
-import { normalizeErrorMessage } from "@/utils/normalizeErrorMessage";
 import Image from "next/image";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -11,13 +12,6 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import AuthBtnSubmit from "../AuthBtnSubmit/AuthBtnSubmit";
 import styles from "../LoginForm/loginForm.module.css";
 import { useToast } from "../ToastContext/ToastContext";
-
-interface resShape {
-  message: string;
-  data: { token: string };
-  status: number;
-  errors: { [key: string]: string };
-}
 
 const RegisterForm = () => {
   const [viewPassword, setViewPassword] = useState<boolean>(false);
@@ -36,81 +30,27 @@ const RegisterForm = () => {
 
   const onSubmit: SubmitHandler<FormAuthInputs> = async (data) => {
     try {
-      const formData = createFormData(data);
+      const arrOfInputs: Array<keyof FormAuthInputs> = [
+        "name",
+        "email",
+        "password",
+        "phone",
+        "role",
+        "company",
+        "linkedin_profile",
+        "profile_image",
+        "passport_file",
+      ];
+      const formData = createFormData(data, arrOfInputs);
 
-      const response = await submitFormData(formData);
+      const response = await submitFormData(formData, "register");
 
-      handleResponse(response);
+      handleResponse(response, showToast, handleErrors, reset, setError);
     } catch (error) {
       handleSubmissionError(error, showToast);
     }
   };
 
-  const createFormData = (data: FormAuthInputs): FormData => {
-    const formData = new FormData();
-    const formFields: Array<keyof FormAuthInputs> = [
-      "name",
-      "email",
-      "password",
-      "phone",
-      "role",
-      "company",
-      "linkedin_profile",
-      "profile_image",
-      "passport_file",
-    ];
-
-    formFields.forEach((field) => {
-      const value = data[field];
-      if (value !== undefined && value !== null) {
-        if (value instanceof FileList) {
-          formData.append(field, value[0]);
-        } else if (value instanceof File) {
-          formData.append(field, value);
-        } else {
-          formData.append(field, value);
-        }
-      }
-    });
-
-    return formData;
-  };
-
-  const submitFormData = async (formData: FormData): Promise<resShape> => {
-    return await fetchApi<resShape>("register", {
-      method: "POST",
-      body: formData,
-      headers: {
-        Accept: "application/json",
-      },
-      cache: "no-cache",
-    });
-  };
-
-  const handleResponse = (response: resShape) => {
-    if (response.status !== 200 && response.errors) {
-      handleErrors(response.errors);
-      return;
-    }
-
-    if (response.status === 200) {
-      showToast(response.message, "success");
-      reset();
-    }
-  };
-
-  const handleErrors = (errors: Record<string, unknown>) => {
-    if (!errors || Object.keys(errors).length === 0) return;
-
-    Object.entries(errors).forEach(([field, error]) => {
-      const errorMessage = normalizeErrorMessage(error);
-      setError(field as keyof FormAuthInputs, {
-        type: "server",
-        message: errorMessage,
-      });
-      showToast(errorMessage, "error");
-    });
-  };
 
   return (
     <form

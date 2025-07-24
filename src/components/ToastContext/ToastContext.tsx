@@ -4,7 +4,7 @@ import { createContext, useContext, useState, ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { v4 as uuid } from "uuid";
 
-interface Toast {
+export interface Toast {
   id: string;
   message: string;
   type?: "success" | "error" | "info";
@@ -30,7 +30,7 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
     setToasts((prev) => [...prev, { id, message, type }]);
     setTimeout(() => {
       setToasts((prev) => prev.filter((toast) => toast.id !== id));
-    }, 4000);
+    }, 3000);
   };
 
   return (
@@ -53,7 +53,7 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
                   : "bg-blue-500"
               }`}
             >
-              {toast.message}
+              {toast.message} 
             </motion.div>
           ))}
         </AnimatePresence>

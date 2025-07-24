@@ -1,0 +1,16 @@
+.authLable {
+  color: #a7a7a7;
+}
+
+.inputContainer {
+  position: relative;
+  margin-top: 10px;
+}
+.passwordViewIcon {
+  position: absolute;
+  right: 12px;
+  top: 55%;
+  font-size: 20px;
+  cursor: pointer;
+  color: #000000;
+}

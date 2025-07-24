@@ -1,6 +1,8 @@
+import VerifyContent from "@/components/VerifyContent/VerifyContent";
 import { Metadata } from "next";
 import styles from "../authStyles.module.css";
-import VerifyAccountForm from "@/components/VerifyAccountForm/VerifyAccountForm";
+import { Suspense } from "react";
+import Loader from "@/components/Loader/Loader";
 
 export const metadata: Metadata = {
   title: "Nudge | Verify Account",
@@ -9,12 +11,12 @@ export const metadata: Metadata = {
 
 const VerifyAccountPage = () => {
   return (
-    <>
+    <Suspense fallback={<Loader />}>
       <h1 className={`${styles.heading} text-center mb-3 text-4xl font-bol`}>
         Verify Account
       </h1>
-      <VerifyAccountForm />
-    </>
+      <VerifyContent target="Verify Account" />
+    </Suspense>
   );
 };
 

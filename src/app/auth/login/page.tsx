@@ -2,6 +2,8 @@ import LoginForm from "@/components/LoginForm/LoginForm";
 import { Metadata } from "next";
 import Link from "next/link";
 import styles from "../authStyles.module.css";
+import { Suspense } from "react";
+import Loader from "@/components/Loader/Loader";
 
 export const metadata: Metadata = {
   title: "Nudge | Login",
@@ -10,7 +12,7 @@ export const metadata: Metadata = {
 
 const LoginPage = () => {
   return (
-    <>
+    <Suspense fallback={<Loader />}>
       <h1
         className={`${styles.heading} text-center mb-3 mt-6 text-4xl font-bol`}
       >
@@ -29,7 +31,7 @@ const LoginPage = () => {
           Sign up
         </Link>
       </p>
-    </>
+    </Suspense>
   );
 };
 

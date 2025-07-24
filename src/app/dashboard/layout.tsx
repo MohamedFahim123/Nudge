@@ -1,12 +1,15 @@
 "use client";
 import { getTokenFromServerCookies } from "@/Actions/TokenHandlers";
+import LogoutBtn from "@/components/LogoutBtn/LogoutBtn";
 import Sidebar from "@/components/SideBar/SideBar";
+import { useProfileStore } from "@/store/profile";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 
 function DashboardLayout({ children }: { children: React.ReactNode }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const { profile } = useProfileStore();
 
   useEffect(() => {
     const handleResize = () => {
@@ -26,8 +29,22 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[16rem_1fr] min-h-screen">
-      <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} isMobile={isMobile} />
-      <main className={`p-4 ${isMobile ? "pt-8" : ""}`}>{children}</main>
+      <Sidebar
+        isOpen={isSidebarOpen}
+        setIsOpen={setIsSidebarOpen}
+        isMobile={isMobile}
+      />
+      <div className={`flex flex-col flex-1 p-4 ${isMobile ? "pt-8" : ""}`}>
+        <header className="flex justify-between items-center px-6 py-4">
+          <h1 className={`text-2xl font-bold capitalize`}>Hello, {profile?.name}👋</h1>
+          <div className="flex items-center gap-4">
+            <LogoutBtn />
+          </div>
+        </header>
+        <main className="flex-1 px-6 pt-6">
+          <div className={`bg-white`}>{children}</div>
+        </main>
+      </div>
     </div>
   );
 }

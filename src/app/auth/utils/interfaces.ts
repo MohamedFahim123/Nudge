@@ -8,6 +8,10 @@ export interface FormAuthInputs {
   role?: string;
   company?: string;
   linkedin_profile?: string;
-  profile_image?: File;
+  profile_image?: File | string;
   passport_file?: File;
+  current_password?: string;
+  new_password?: string;
+  new_password_confirmation?: string;
+  new_email?: string;
 }

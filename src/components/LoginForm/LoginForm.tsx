@@ -4,7 +4,6 @@ import { fetchApi } from "@/Actions/FetchApi";
 import { setServerCookie } from "@/Actions/TokenHandlers";
 import { FormAuthInputs } from "@/app/auth/utils/interfaces";
 import { handleSubmissionError } from "@/utils/handleSubmitError";
-import { normalizeErrorMessage } from "@/utils/normalizeErrorMessage";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -13,6 +12,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import AuthBtnSubmit from "../AuthBtnSubmit/AuthBtnSubmit";
 import { useToast } from "../ToastContext/ToastContext";
 import styles from "./loginForm.module.css";
+import { handleErrors } from "@/Actions/HandleResponse";
 
 interface resShape {
   ok: unknown;
@@ -51,6 +51,7 @@ const LoginForm = () => {
     reset,
     formState: { errors, isSubmitting },
   } = useForm<FormAuthInputs>();
+
   const onSubmit: SubmitHandler<FormAuthInputs> = async (formData) => {
     try {
       const response = await fetchApi<resShape>("login", {
@@ -70,7 +71,7 @@ const LoginForm = () => {
   };
   const handleResponse = async (response: resShape) => {
     if (response.status !== 200 && response.errors) {
-      handleErrors(response.errors);
+      handleErrors(response.errors, showToast, setError);
       return;
     }
 
@@ -85,18 +86,6 @@ const LoginForm = () => {
         router.push("/auth/verify-account");
       }
     }
-  };
-  const handleErrors = (errors: Record<string, unknown>) => {
-    if (!errors || Object.keys(errors).length === 0) return;
-
-    Object.entries(errors).forEach(([field, error]) => {
-      const errorMessage = normalizeErrorMessage(error);
-      setError(field as keyof FormAuthInputs, {
-        type: "server",
-        message: errorMessage,
-      });
-      showToast(errorMessage, "error");
-    });
   };
 
   return (

@@ -1,7 +1,9 @@
 import RegisterForm from "@/components/RegisterForm/RegisterForm";
 import { Metadata } from "next";
-import styles from "../authStyles.module.css";
 import Link from "next/link";
+import styles from "../authStyles.module.css";
+import { Suspense } from "react";
+import Loader from "@/components/Loader/Loader";
 
 export const metadata: Metadata = {
   title: "Nudge | Register",
@@ -10,7 +12,7 @@ export const metadata: Metadata = {
 
 const RegisterPage = () => {
   return (
-    <>
+    <Suspense fallback={<Loader />}>
       <h1 className={`${styles.heading} text-center mb-3 text-4xl font-bol`}>
         Register
       </h1>
@@ -27,7 +29,7 @@ const RegisterPage = () => {
           Sign In
         </Link>
       </p>
-    </>
+    </Suspense>
   );
 };
 

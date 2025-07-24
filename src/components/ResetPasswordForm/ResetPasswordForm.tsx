@@ -1,17 +1,18 @@
 "use client";
 
 import { fetchApi } from "@/Actions/FetchApi";
+import { handleErrors } from "@/Actions/HandleResponse";
 import { FormAuthInputs } from "@/app/auth/utils/interfaces";
 import { handleSubmissionError } from "@/utils/handleSubmitError";
-import { normalizeErrorMessage } from "@/utils/normalizeErrorMessage";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import AuthBtnSubmit from "../AuthBtnSubmit/AuthBtnSubmit";
 import styles from "../LoginForm/loginForm.module.css";
 import { useToast } from "../ToastContext/ToastContext";
+
 interface resShape {
   ok: unknown;
   message: string;
@@ -32,7 +33,7 @@ const ResetPasswordForm = () => {
   const [countdown, setCountdown] = useState<number>(60);
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     let timer: NodeJS.Timeout;
     if (isDisabled && countdown > 0) {
       timer = setInterval(() => {
@@ -79,7 +80,7 @@ const ResetPasswordForm = () => {
 
   const handleResponse = async (response: resShape) => {
     if (response.status !== 200 && response.errors) {
-      handleErrors(response.errors);
+      handleErrors(response.errors, showToast, setError);
       return;
     }
 
@@ -88,19 +89,6 @@ const ResetPasswordForm = () => {
       reset();
       router.push("/auth/reset-password");
     }
-  };
-
-  const handleErrors = (errors: Record<string, unknown>) => {
-    if (!errors || Object.keys(errors).length === 0) return;
-
-    Object.entries(errors).forEach(([field, error]) => {
-      const errorMessage = normalizeErrorMessage(error);
-      setError(field as keyof FormAuthInputs, {
-        type: "server",
-        message: errorMessage,
-      });
-      showToast(errorMessage, "error");
-    });
   };
 
   return (

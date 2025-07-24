@@ -1,16 +1,26 @@
 "use client";
 
 import { getTokenFromServerCookies } from "@/Actions/TokenHandlers";
+import { useSettingsStore } from "@/store/settings";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { CgProfile } from "react-icons/cg";
 
 const NavBar = () => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [token, setToken] = useState<string | null>(null);
+  const { settings, getSettings, settingsLoading } = useSettingsStore();
+
+  const getAllWebsiteSettings = useCallback(() => {
+    if (!settings?.logo && !settingsLoading) getSettings();
+  }, [settings, settingsLoading, getSettings]);
+
+  useEffect(() => {
+    getAllWebsiteSettings();
+  }, [getAllWebsiteSettings]);
 
   useEffect(() => {
     (async () => {
@@ -29,7 +39,7 @@ const NavBar = () => {
           <Image
             width={100}
             height={100}
-            src="/images/Nudge_Default_Light.avif"
+            src={"/images/Nudge_Default_Light.avif"}
             className="h-8"
             alt="Logo"
           />

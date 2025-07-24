@@ -2,6 +2,7 @@ import CEOSection from "@/components/CEOSection/CEOSection";
 import DeadLineSection from "@/components/DeadLineSection/DeadLineSection";
 import ExpectationSlider from "@/components/ExpectationSlider/ExpectationSlider";
 import GlobalExpertise from "@/components/GlobalExpertise/GlobalExpertise";
+import Loader from "@/components/Loader/Loader";
 import MaximizingRevenue from "@/components/MaximizingRevenue/MaximizingRevenue";
 import NudgeFramework from "@/components/NudgeFramework/NudgeFramework";
 import PartnersSection from "@/components/PartnersSection/PartnersSection";
@@ -12,6 +13,7 @@ import SummitInfo from "@/components/SummitInfo/SummitInfo";
 import TicketSection from "@/components/TicketSection/TicketSection";
 import { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import { MdOutlineArrowRightAlt } from "react-icons/md";
 
 export const metadata: Metadata = {
@@ -21,7 +23,7 @@ export const metadata: Metadata = {
 
 const SummitPage = () => {
   return (
-    <>
+    <Suspense fallback={<Loader />}>
       <SummitHeroSection />
       <PartnersSection />
       <QuoteSection />
@@ -43,7 +45,7 @@ const SummitPage = () => {
         </Link>
       </section>
       <DeadLineSection />
-    </>
+    </Suspense>
   );
 };
 

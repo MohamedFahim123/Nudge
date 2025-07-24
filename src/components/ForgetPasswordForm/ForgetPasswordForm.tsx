@@ -1,26 +1,17 @@
 "use client";
 
 import { fetchApi } from "@/Actions/FetchApi";
+import { handleErrors } from "@/Actions/HandleResponse";
+import { resShape } from "@/Actions/SubmitFormData";
 import { FormAuthInputs } from "@/app/auth/utils/interfaces";
 import { handleSubmissionError } from "@/utils/handleSubmitError";
-import { normalizeErrorMessage } from "@/utils/normalizeErrorMessage";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import AuthBtnSubmit from "../AuthBtnSubmit/AuthBtnSubmit";
 import styles from "../LoginForm/loginForm.module.css";
 import { useToast } from "../ToastContext/ToastContext";
-import { useRouter } from "next/navigation";
-
-interface resShape {
-  ok: unknown;
-  message: string;
-  data: {
-    token: string;
-  };
-  status: number;
-  errors: { [key: string]: string };
-}
 
 const ForgetPasswordForm = () => {
   const { showToast } = useToast();
@@ -53,7 +44,7 @@ const ForgetPasswordForm = () => {
 
   const handleResponse = async (response: resShape) => {
     if (response.status !== 200 && response.errors) {
-      handleErrors(response.errors);
+      handleErrors(response.errors, showToast, setError);
       return;
     }
 
@@ -62,19 +53,6 @@ const ForgetPasswordForm = () => {
       reset();
       router.push("/auth/reset-password");
     }
-  };
-
-  const handleErrors = (errors: Record<string, unknown>) => {
-    if (!errors || Object.keys(errors).length === 0) return;
-
-    Object.entries(errors).forEach(([field, error]) => {
-      const errorMessage = normalizeErrorMessage(error);
-      setError(field as keyof FormAuthInputs, {
-        type: "server",
-        message: errorMessage,
-      });
-      showToast(errorMessage, "error");
-    });
   };
 
   return (

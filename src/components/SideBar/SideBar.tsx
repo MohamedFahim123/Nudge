@@ -14,6 +14,7 @@ interface SidebarProps {
 
 const Sidebar = ({ isOpen, setIsOpen, isMobile }: SidebarProps) => {
   const pathname = usePathname();
+
   const sidebarVariants = {
     hidden: { x: "-100%" },
     visible: { x: 0 },
@@ -65,8 +66,8 @@ const Sidebar = ({ isOpen, setIsOpen, isMobile }: SidebarProps) => {
       </AnimatePresence>
 
       {!isMobile && (
-        <aside className="hidden lg:flex flex-col w-54 h-screen bg-[#1E1E1E] shadow-xl">
-          <h2 className="text-lg font-bold mb-4 border-b-2 border-white py-4 px-4">
+        <aside className="hidden lg:flex flex-col w-54 sticky top-0 h-screen bg-gray-100 border-r border-r-gray-200 shadow-xl z-30">
+          <h2 className="text-lg font-bold mb-4 border-b-2 bg-purple-600 border-white py-4 px-4">
             <Link href={"/"}>
               <Image
                 width={100}
@@ -76,31 +77,34 @@ const Sidebar = ({ isOpen, setIsOpen, isMobile }: SidebarProps) => {
               />
             </Link>
           </h2>
-          <ul className="space-y-3 text-xl mx-5">
+          <ul className="space-y-3 text-xl mx-5 bg-gray-100">
             <li
-              className={`px-4 py-2 rounded-md ${
-                pathname.includes("profile") ? "bg-[#5bf286]" : ""
+              className={`px-4 py-2 cursor-pointer rounded-md ${
+                pathname.includes("profile")
+                  ? "bg-purple-600 text-white"
+                  : "hover:bg-purple-600 cursor-pointer text-black hover:text-white transition-all ease-in-out duration-300"
               }`}
             >
-              <Link
-                href="/dashboard/profile"
-                className={`font-semibold text-white `}
-              >
+              <Link href="/dashboard/profile" className={`block font-semibold`}>
                 Profile
               </Link>
             </li>
             <li
-              className={`px-4 py-2 rounded-md ${
+              className={`px-4 py-2 rounded-md cursor-pointer ${
                 pathname.includes("ticket")
-                  ? "bg-[#5bf286]"
-                  : "hover:bg-[#5bf286] transition-all ease-in-out duration-300"
+                  ? "bg-purple-600 text-white"
+                  : "hover:bg-purple-600 text-black hover:text-white transition-all ease-in-out duration-300"
               }`}
             >
-              <Link
-                href="/dashboard/ticket"
-                className={`font-semibold text-white`}
-              >
-                ticket
+              <Link href="/dashboard/tickets" className={`block font-semibold`}>
+                tickets
+              </Link>
+            </li>
+            <li
+              className={`px-4 py-2 cursor-pointer rounded-md hover:bg-purple-600 hover:text-white transition-all ease-in-out duration-300`}
+            >
+              <Link href={`/`} className={`block font-semibold`}>
+                Back To Home
               </Link>
             </li>
           </ul>

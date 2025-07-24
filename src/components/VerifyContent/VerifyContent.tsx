@@ -1,27 +1,21 @@
 "use client";
 
 import { fetchApi } from "@/Actions/FetchApi";
+import { handleErrors } from "@/Actions/HandleResponse";
+import { resShape } from "@/Actions/SubmitFormData";
 import { getTokenFromServerCookies } from "@/Actions/TokenHandlers";
 import { FormAuthInputs } from "@/app/auth/utils/interfaces";
 import { handleSubmissionError } from "@/utils/handleSubmitError";
-import { normalizeErrorMessage } from "@/utils/normalizeErrorMessage";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import AuthBtnSubmit from "../AuthBtnSubmit/AuthBtnSubmit";
 import styles from "../LoginForm/loginForm.module.css";
 import { useToast } from "../ToastContext/ToastContext";
+import { useProfileStore } from "@/store/profile";
 
-interface resShape {
-  ok: unknown;
-  message: string;
-  data: {
-    token: string;
-  };
-  status: number;
-  errors: { [key: string]: string };
-}
-
-const VerifyAccountForm = () => {
+const VerifyContent = ({ target }: { target: string }) => {
+  const { getProfile } = useProfileStore();
   const {
     register,
     handleSubmit,
@@ -30,7 +24,7 @@ const VerifyAccountForm = () => {
     formState: { errors, isSubmitting },
   } = useForm<FormAuthInputs>();
   const { showToast } = useToast();
-  // const router = useRouter();
+  const router = useRouter();
 
   const [countdown, setCountdown] = useState<number>(60);
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
@@ -56,16 +50,21 @@ const VerifyAccountForm = () => {
   const onSubmit: SubmitHandler<FormAuthInputs> = async (data) => {
     try {
       const token = await getTokenFromServerCookies();
-      const response = await fetchApi<resShape>("verify-account", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        cache: "no-cache",
-      });
+      const response = await fetchApi<resShape>(
+        target === "Confirm Profile Email"
+          ? "confirm-change-email"
+          : "verify-account",
+        {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          cache: "no-cache",
+        }
+      );
 
       handleResponse(response);
     } catch (error) {
@@ -75,27 +74,16 @@ const VerifyAccountForm = () => {
 
   const handleResponse = async (response: resShape) => {
     if (response.status !== 200 && response.errors) {
-      handleErrors(response.errors);
+      handleErrors(response.errors, showToast, setError);
       return;
     }
 
     if (response.status === 200) {
       showToast(response.message, "success");
       reset();
+      await getProfile();
+      router.push("/dashboard/profile");
     }
-  };
-
-  const handleErrors = (errors: Record<string, unknown>) => {
-    if (!errors || Object.keys(errors).length === 0) return;
-
-    Object.entries(errors).forEach(([field, error]) => {
-      const errorMessage = normalizeErrorMessage(error);
-      setError(field as keyof FormAuthInputs, {
-        type: "server",
-        message: errorMessage,
-      });
-      showToast(errorMessage, "error");
-    });
   };
 
   return (
@@ -144,4 +132,4 @@ const VerifyAccountForm = () => {
   );
 };
 
-export default React.memo(VerifyAccountForm);
+export default React.memo(VerifyContent);
