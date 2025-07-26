@@ -5,6 +5,7 @@ import { Suspense, useEffect } from "react";
 import Loader from "@/components/Loader/Loader";
 import styles from "./authStyles.module.css";
 import { getTokenFromServerCookies } from "@/Actions/TokenHandlers";
+import FloatingBackButton from "@/components/FloatingBackButton/FloatingBackButton";
 
 export default function AuthLayout({
   children,
@@ -23,6 +24,7 @@ export default function AuthLayout({
   return (
     <Suspense fallback={<Loader />}>
       <div className={`${styles.auth_layout}`}>
+        <FloatingBackButton />
         <div
           className={`${
             pathName === "/auth/login" && styles.paddingBlockNone

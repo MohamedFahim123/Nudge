@@ -91,20 +91,52 @@ const Sidebar = ({ isOpen, setIsOpen, isMobile }: SidebarProps) => {
             </li>
             <li
               className={`px-4 py-2 rounded-md cursor-pointer ${
-                pathname.includes("ticket")
+                pathname.includes("tickets")
                   ? "bg-purple-600 text-white"
                   : "hover:bg-purple-600 text-black hover:text-white transition-all ease-in-out duration-300"
               }`}
             >
               <Link href="/dashboard/tickets" className={`block font-semibold`}>
-                tickets
+                Tickets
               </Link>
             </li>
             <li
-              className={`px-4 py-2 cursor-pointer rounded-md hover:bg-purple-600 hover:text-white transition-all ease-in-out duration-300`}
+              className={`px-4 py-2 rounded-md cursor-pointer ${
+                pathname.includes("buy-ticket")
+                  ? "bg-purple-600 text-white"
+                  : "hover:bg-purple-600 text-black hover:text-white transition-all ease-in-out duration-300"
+              }`}
             >
-              <Link href={`/`} className={`block font-semibold`}>
-                Back To Home
+              <Link
+                href="/dashboard/buy-ticket"
+                className={`block font-semibold`}
+              >
+                Buy a Ticket
+              </Link>
+            </li>
+            <li
+              className={`px-4 py-2 rounded-md cursor-pointer ${
+                pathname.includes("my-cart")
+                  ? "bg-purple-600 text-white"
+                  : "hover:bg-purple-600 text-black hover:text-white transition-all ease-in-out duration-300"
+              }`}
+            >
+              <Link href="/dashboard/my-cart" className={`block font-semibold`}>
+                My Cart
+              </Link>
+            </li>
+            <li
+              className={`px-4 py-2 rounded-md cursor-pointer ${
+                pathname.includes("my-transactions")
+                  ? "bg-purple-600 text-white"
+                  : "hover:bg-purple-600 text-black hover:text-white transition-all ease-in-out duration-300"
+              }`}
+            >
+              <Link
+                href="/dashboard/my-transactions"
+                className={`block font-semibold`}
+              >
+                My Transactions
               </Link>
             </li>
           </ul>

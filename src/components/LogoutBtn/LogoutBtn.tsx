@@ -23,7 +23,7 @@ export default function LogoutBtn() {
     <button
       onClick={logout}
       type="button"
-      className={`cursor-pointer flex items-center gap-2 px-4 py-2 outline-none bg-red-500 text-white rounded-lg hover:bg-white transition-all duration-300 hover:text-red-500 active:bg-white shadow-md focus:outline-none`}
+      className={`cursor-pointer flex items-center gap-2 px-4 py-2 outline-none border border-red-500 bg-red-500 text-white rounded-lg hover:bg-white transition-all duration-300 hover:text-red-500 active:bg-white shadow-md focus:outline-none`}
     >
       <FaSignOutAlt size={18} />
       Logout

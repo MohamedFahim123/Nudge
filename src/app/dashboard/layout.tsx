@@ -3,13 +3,15 @@ import { getTokenFromServerCookies } from "@/Actions/TokenHandlers";
 import LogoutBtn from "@/components/LogoutBtn/LogoutBtn";
 import Sidebar from "@/components/SideBar/SideBar";
 import { useProfileStore } from "@/store/profile";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
+import { FaArrowLeft } from "react-icons/fa";
 
 function DashboardLayout({ children }: { children: React.ReactNode }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const { profile } = useProfileStore();
+  const { profile, getProfile } = useProfileStore();
 
   useEffect(() => {
     const handleResize = () => {
@@ -27,6 +29,10 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
     })();
   }, []);
 
+  useEffect(() => {
+    if (!profile) getProfile();
+  }, [getProfile, profile]);
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[16rem_1fr] min-h-screen">
       <Sidebar
@@ -36,8 +42,17 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
       />
       <div className={`flex flex-col flex-1 p-4 ${isMobile ? "pt-8" : ""}`}>
         <header className="flex justify-between items-center px-6 py-4">
-          <h1 className={`text-2xl font-bold capitalize`}>Hello, {profile?.name}👋</h1>
+          <h1 className={`text-2xl font-bold capitalize`}>
+            Hello, {profile?.name}👋
+          </h1>
           <div className="flex items-center gap-4">
+            <Link
+              href="/home"
+              className="flex items-center gap-2 bg-purple-600 hover:bg-white text-white hover:text-purple-600 duration-300 border border-purple-600 shadow-md rounded-lg px-4 py-2 transition-all"
+            >
+              <FaArrowLeft size={14} />
+              <span className="text-md font-semibold">Home Page</span>
+            </Link>
             <LogoutBtn />
           </div>
         </header>
