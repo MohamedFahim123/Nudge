@@ -26,9 +26,10 @@ interface ApiResponse {
 const TransactionDetailsPage = async ({
   params,
 }: {
-  params: { code: string };
+  params: Promise<{ code: string }>;
 }) => {
-  const res = await fetchApi<ApiResponse>(`show-transaction/${params.code}`, {
+  const { code } = await params;
+  const res = await fetchApi<ApiResponse>(`show-transaction/${code}`, {
     cache: "no-store",
     headers: {
       Accept: "application/json",
@@ -46,9 +47,7 @@ const TransactionDetailsPage = async ({
     <div className="max-100 mx-auto p-6 bg-white shadow rounded-lg">
       <h1 className="text-3xl font-bold mb-4">
         Transaction Details{" "}
-        <small className="text-gray-500 font-medium underline">
-          {params.code}
-        </small>
+        <small className="text-gray-500 font-medium underline">{code}</small>
       </h1>
 
       <div className="mb-6 space-y-2">
