@@ -3,11 +3,27 @@ import { getTokenFromServerCookies } from "@/Actions/TokenHandlers";
 import { create } from "zustand";
 
 export interface Ticket {
-  id: number;
-  title: string;
+  code: string;
+  price: number;
+  status: string;
+  transaction: string;
   type: string;
-  status: "Open" | "Pending" | "Closed" | "Rejected";
-  created_at: string;
+  your_ticket: boolean;
+  audience: {
+    name: string;
+    email: string;
+    code: string;
+  };
+}
+
+export interface MyTicket {
+  assigned_by: string,
+  booked_by_you: boolean,
+  code: string,
+  notes: string | null,
+  price: number,
+  status: string,
+  type: string,
 }
 
 let lastFetchedTimeAllTickets: number = 0;
@@ -19,7 +35,7 @@ export interface UseTicketsStoreIterface {
   allTickets: Ticket[] | null;
   allTicketsLoading: boolean;
   getAllTickets: () => Promise<void>;
-  myTicket: Ticket[] | null;
+  myTicket: MyTicket | null;
   myTicketLoading: boolean;
   getMyTicket: () => Promise<void>;
   unUsedTickets: Ticket[] | null;
@@ -56,7 +72,7 @@ export const useTicketsStore = create<UseTicketsStoreIterface>((set) => ({
     lastFetchedTimeMyTicket = now;
 
     set({ myTicketLoading: true });
-    const res = await fetchApi<{ data: { booking: Ticket[] } }>(
+    const res = await fetchApi<{ data: { booking: MyTicket } }>(
       `my-ticket?t=${now}`,
       {
         cache: "force-cache",

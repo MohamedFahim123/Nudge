@@ -9,7 +9,7 @@ const MyCartFullContent = () => {
   const { cartItems, cartItemsLoading, getCartItems } = useCartsStore();
 
   const getCartData = useCallback(async () => {
-     await getCartItems();
+    await getCartItems();
   }, [getCartItems]);
 
   useEffect(() => {

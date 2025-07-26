@@ -4,7 +4,13 @@ import { useCallback, useEffect } from "react";
 import TicketsTable from "../TicketsTable/TicketsTable";
 import Loader from "../Loader/Loader";
 
-const DashboardMyAllTickets = () => {
+const DashboardMyAllTickets = ({
+  setView,
+}: {
+  setView: (
+    view: "All Tickets" | "My Ticket" | "UnUsed Tickets" | "Requests"
+  ) => void;
+}) => {
   const { allTickets, allTicketsLoading, getAllTickets } = useTicketsStore();
 
   const getAllAvailabelTickets = useCallback(async () => {
@@ -18,7 +24,7 @@ const DashboardMyAllTickets = () => {
   if (allTicketsLoading) return <Loader />;
   if (!allTickets) return null;
 
-  return <TicketsTable tickets={allTickets} />;
+  return <TicketsTable setView={setView} tickets={allTickets} />;
 };
 
 export default DashboardMyAllTickets;

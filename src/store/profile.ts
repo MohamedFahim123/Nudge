@@ -1,5 +1,9 @@
 import { fetchApi } from "@/Actions/FetchApi";
-import { getTokenFromServerCookies } from "@/Actions/TokenHandlers";
+import {
+  getTokenFromServerCookies,
+  removeTokenFromServerCookies,
+} from "@/Actions/TokenHandlers";
+import { userLogout } from "@/Actions/UserLogout";
 import { create } from "zustand";
 
 export interface Profile {
@@ -28,31 +32,33 @@ export interface Profile {
 
 export interface UseProfileStoreIterface {
   profile: Profile | null;
-  profileError: unknown;
   profileLoading: boolean;
   getProfile: () => Promise<void>;
 }
 
-
 export const useProfileStore = create<UseProfileStoreIterface>((set) => ({
   profile: null,
-  profileError: null,
   profileLoading: false,
 
   getProfile: async () => {
     const now = new Date().getTime();
 
     set({ profileLoading: true });
-    const res = await fetchApi<{ data: { audience: Profile } }>(
-      `profile?t=${now}`,
-      {
-        cache: "force-cache",
-        headers: {
-          Accept: "application/json",
-          Authorization: `Bearer ${await getTokenFromServerCookies()}`,
-        },
-      }
-    );
+    const res = await fetchApi<{
+      message: string;
+      data: { audience: Profile };
+    }>(`profile?t=${now}`, {
+      cache: "force-cache",
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${await getTokenFromServerCookies()}`,
+      },
+    });
+    if (res.message === "Unauthenticated" || res.message === "Unauthorized") {
+      await userLogout();
+      await removeTokenFromServerCookies();
+      window.location.reload();
+    }
     set({ profile: res.data.audience, profileLoading: false });
   },
 }));

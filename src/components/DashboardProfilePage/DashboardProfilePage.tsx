@@ -2,32 +2,18 @@
 
 import { useProfileStore } from "@/store/profile";
 import { useCallback, useEffect, useState } from "react";
-import { useToast } from "../ToastContext/ToastContext";
+import Loader from "../Loader/Loader";
 import ChangeEmailForm from "./ChangeEmailForm/ChangeEmailForm";
 import ChangePasswordForm from "./ChangePasswordForm/ChangePasswordForm";
 import EditProfileForm from "./EditProfileForm/EditProfileForm";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import { removeTokenFromServerCookies } from "@/Actions/TokenHandlers";
-import Loader from "../Loader/Loader";
 
 export default function ProfilePage({ token }: { token: string }) {
-  const { showToast } = useToast();
-  const {
-    profile: user,
-    profileLoading,
-    getProfile,
-    profileError,
-  } = useProfileStore();
+  const { profile: user, profileLoading, getProfile } = useProfileStore();
 
   const getProfileData = useCallback(() => {
-    if (profileError) {
-      (async () => {
-        await removeTokenFromServerCookies();
-      })();
-      return showToast("Something went wrong", "error");
-    }
     if (!profileLoading && !user) getProfile();
-  }, [getProfile, user, profileError, profileLoading, showToast]);
+  }, [getProfile, user, profileLoading]);
 
   useEffect(() => {
     getProfileData();

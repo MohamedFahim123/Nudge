@@ -48,12 +48,10 @@ const TicketsFullContent = () => {
           Tickets Requests
         </button>
       </div>
-      <div className="bg-white shadow p-6 rounded-md">
-        {view === "All Tickets" && <DashboardMyAllTickets />}
+        {view === "All Tickets" && <DashboardMyAllTickets setView={setView} />}
         {view === "My Ticket" && <MyTicketSection />}
         {view === "UnUsed Tickets" && <UnUsedTickets />}
         {view === "Requests" && <>Requests</>}
-      </div>
     </>
   );
 };
