@@ -50,7 +50,7 @@ const TicketsFullContent = () => {
       </div>
         {view === "All Tickets" && <DashboardMyAllTickets setView={setView} />}
         {view === "My Ticket" && <MyTicketSection />}
-        {view === "UnUsed Tickets" && <UnUsedTickets />}
+        {view === "UnUsed Tickets" && <UnUsedTickets setView={setView} />}
         {view === "Requests" && <>Requests</>}
     </>
   );
