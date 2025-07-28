@@ -42,7 +42,24 @@ const VerifyContent = ({ target }: { target: string }) => {
     return () => clearInterval(timer);
   }, [isDisabled, countdown]);
 
-  const handleResendClick = () => {
+  const handleResendClick = async () => {
+    if (target !== "Confirm Profile Email") {
+      try {
+        const token = await getTokenFromServerCookies();
+        const response = await fetchApi<resShape>("resend-verification-code", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          cache: "no-cache",
+        });
+        handleResponse(response);
+      } catch (error) {
+        handleSubmissionError(error, showToast);
+      }
+    }
     setCountdown(60);
     setIsDisabled(true);
   };

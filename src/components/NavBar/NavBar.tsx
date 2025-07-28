@@ -29,6 +29,8 @@ const NavBar = () => {
     })();
   }, []);
 
+  if (settingsLoading) return null;
+
   return (
     <nav className="bg-[#1E1E1E] py-5">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-4 px-4">

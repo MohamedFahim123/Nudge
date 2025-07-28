@@ -8,7 +8,7 @@ const DashboardMyAllTickets = ({
   setView,
 }: {
   setView: (
-    view: "All Tickets" | "My Ticket" | "UnUsed Tickets" | "Requests"
+    view: "All Tickets" | "My Ticket" | "UnUsed Tickets"
   ) => void;
 }) => {
   const { allTickets, allTicketsLoading, getAllTickets } = useTicketsStore();

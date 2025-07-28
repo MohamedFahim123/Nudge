@@ -2,9 +2,7 @@ import { Ticket } from "@/store/tickets";
 
 interface TicketsTableProps {
   tickets: Ticket[];
-  setView: (
-    view: "All Tickets" | "My Ticket" | "UnUsed Tickets" | "Requests"
-  ) => void;
+  setView: (view: "All Tickets" | "My Ticket" | "UnUsed Tickets") => void;
 }
 
 export default function TicketsTable({ tickets, setView }: TicketsTableProps) {
@@ -52,7 +50,11 @@ export default function TicketsTable({ tickets, setView }: TicketsTableProps) {
                   className={`px-2 py-1 rounded-full text-xs font-semibold ${
                     ticket.status === "Confirmed Attendee"
                       ? "bg-green-100 text-green-700"
-                      : "bg-yellow-100 text-yellow-700"
+                      : ticket.status === "Prospect"
+                      ? "bg-yellow-100 text-yellow-700"
+                      : ticket.status === "Rejected"
+                      ? "bg-red-100 text-red-700"
+                      : "bg-gray-100 text-gray-700"
                   }`}
                 >
                   {ticket.status}

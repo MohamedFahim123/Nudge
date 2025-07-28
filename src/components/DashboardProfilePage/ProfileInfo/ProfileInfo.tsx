@@ -10,7 +10,7 @@ export default function ProfileInfo({ user }: Props) {
     <div className="space-y-4">
       <div className="w-60 h-60 rounded-full overflow-hidden">
         <Image
-          src={user.profile_image}
+          src={user?.profile_image}
           alt="Profile"
           width={100}
           height={100}
@@ -19,21 +19,24 @@ export default function ProfileInfo({ user }: Props) {
         />
       </div>
       <p>
-        <strong>Name:</strong> {user.name}
+        <strong>Name:</strong> {user?.name}
       </p>
       <p>
-        <strong>Email:</strong> {user.email}
+        <strong>Code:</strong> {user?.code}
       </p>
       <p>
-        <strong>Phone:</strong> {user.phone}
+        <strong>Email:</strong> {user?.email}
       </p>
       <p>
-        <strong>Company:</strong> {user.company}
+        <strong>Phone:</strong> {user?.phone}
+      </p>
+      <p>
+        <strong>Company:</strong> {user?.company}
       </p>
       <p>
         <strong>LinkedIn:</strong>{" "}
-        <a href={user.linkedin_profile} className="text-purple-600 underline">
-          {user.linkedin_profile}
+        <a href={user?.linkedin_profile} className="text-purple-600 underline">
+          {user?.linkedin_profile}
         </a>
       </p>
     </div>

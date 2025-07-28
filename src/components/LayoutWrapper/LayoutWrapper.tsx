@@ -12,14 +12,13 @@ export default function LayoutWrapper({
 }) {
   const pathname = usePathname();
 
-  const isAuthPage = pathname.startsWith("/auth") || pathname.startsWith("/dashboard");
+  const isAuthPage =
+    pathname.startsWith("/auth") || pathname.startsWith("/dashboard");
 
   return (
     <>
       {isAuthPage ? (
-        <ToastProvider>
-          {children}
-        </ToastProvider>
+        <ToastProvider>{children}</ToastProvider>
       ) : (
         <ToastProvider>
           <NavBar />

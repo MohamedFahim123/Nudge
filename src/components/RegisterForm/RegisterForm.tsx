@@ -46,11 +46,14 @@ const RegisterForm = () => {
       const response = await submitFormData(formData, "register");
 
       handleResponse(response, showToast, handleErrors, reset, setError);
+      if (response.status === 200) {
+        setProfilePreview(null);
+        setPassportName("");
+      }
     } catch (error) {
       handleSubmissionError(error, showToast);
     }
   };
-
 
   return (
     <form

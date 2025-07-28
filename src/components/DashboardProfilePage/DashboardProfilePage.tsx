@@ -1,7 +1,7 @@
 "use client";
 
 import { useProfileStore } from "@/store/profile";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Loader from "../Loader/Loader";
 import ChangeEmailForm from "./ChangeEmailForm/ChangeEmailForm";
 import ChangePasswordForm from "./ChangePasswordForm/ChangePasswordForm";
@@ -11,13 +11,9 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 export default function ProfilePage({ token }: { token: string }) {
   const { profile: user, profileLoading, getProfile } = useProfileStore();
 
-  const getProfileData = useCallback(() => {
-    if (!profileLoading && !user) getProfile();
-  }, [getProfile, user, profileLoading]);
-
   useEffect(() => {
-    getProfileData();
-  }, [getProfileData]);
+    getProfile();
+  }, [getProfile]);
 
   const [view, setView] = useState<"view" | "edit" | "password" | "email">(
     "view"

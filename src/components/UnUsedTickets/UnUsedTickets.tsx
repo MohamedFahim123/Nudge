@@ -9,7 +9,7 @@ const UnUsedTickets = ({
   setView,
 }: {
   setView: (
-    view: "All Tickets" | "My Ticket" | "UnUsed Tickets" | "Requests"
+    view: "All Tickets" | "My Ticket" | "UnUsed Tickets"
   ) => void;
 }) => {
   const { unUsedTickets, unUsedTicketsLoading, getUnUsedTickets } =

@@ -7,7 +7,7 @@ import MyTicketSection from "../MyTicketSection/MyTicketSection";
 
 const TicketsFullContent = () => {
   const [view, setView] = React.useState<
-    "All Tickets" | "My Ticket" | "UnUsed Tickets" | "Requests"
+    "All Tickets" | "My Ticket" | "UnUsed Tickets" 
   >("All Tickets");
 
   return (
@@ -39,19 +39,10 @@ const TicketsFullContent = () => {
         >
           Unused Tickets
         </button>
-        <button
-          onClick={() => setView("Requests")}
-          className={`btn cursor-pointer ${
-            view === "Requests" && "bg-gray-700 text-white hover:text-gray-700"
-          }`}
-        >
-          Tickets Requests
-        </button>
       </div>
         {view === "All Tickets" && <DashboardMyAllTickets setView={setView} />}
         {view === "My Ticket" && <MyTicketSection />}
         {view === "UnUsed Tickets" && <UnUsedTickets setView={setView} />}
-        {view === "Requests" && <>Requests</>}
     </>
   );
 };
