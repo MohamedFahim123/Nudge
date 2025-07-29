@@ -18,7 +18,7 @@ const BuyTicketPage = () => {
         <Link
           href="/dashboard/my-cart"
           title="Buy Ticket"
-          className="outline-none flex items-center gap-2 font-semibold px-4 py-2 rounded-lg shadow-md transistion-all duration-300 bg-purple-600 text-white cursor-pointer border border-purple-600 hover:bg-white hover:text-purple-600"
+          className="outline-none flex items-center gap-2 font-semibold px-4 py-2 rounded-lg shadow-md transistion-all duration-300 bg-[#250168] text-white cursor-pointer border border-[#250168] hover:bg-white hover:text-[#250168]"
         >
           My Cart
           <TiShoppingCart size={20} />

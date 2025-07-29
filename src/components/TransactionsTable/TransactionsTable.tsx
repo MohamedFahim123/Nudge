@@ -60,12 +60,12 @@ const TransactionsTable = () => {
                   </td>
                   <td className="p-3 text-center">{t.payment_method}</td>
                   <td className="p-3 text-center">{t.payment_status}</td>
-                  <td className="p-3 text-center">${t.total_amount / 100}</td>
+                  <td className="p-3 text-center">${t.total_amount}</td>
                   <td className="p-3 text-center">{t.total_tickets}</td>
                   <td className="p-3 pe-10 flex justify-end">
                     <BsEyeFill
                       size={20}
-                      className="cursor-pointer text-purple-600 hover:text-purple-800"
+                      className="cursor-pointer text-[#250168] hover:text-[#231f20]"
                       onClick={() =>
                         router.push(`/dashboard/my-transactions/${t.code}`)
                       }

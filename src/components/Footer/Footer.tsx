@@ -12,7 +12,7 @@ const Footer = () => {
       <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 items-start pb-14">
         <div className="md:col-span-9 flex flex-col sm:flex-row gap-6">
           <div className="w-full sm:w-1/4">
-            <Link href="/">
+            <Link href="/summit">
               <Image
                 src={"/images/Nudge_Default_Light.avif"}
                 alt="Nudge Logo"
@@ -23,7 +23,7 @@ const Footer = () => {
             </Link>
           </div>
           <div className="w-full sm:w-3/4">
-            <span className="text-xs font-semibold bg-gray-700 px-2 py-1 rounded">
+            <span className="text-xs font-semibold bg-[#231f20] px-2 py-1 rounded">
               ABOUT
             </span>
             <p className="text-md text-[#969696] mt-6 leading-relaxed">
@@ -37,7 +37,7 @@ const Footer = () => {
         </div>
 
         <div className="md:col-span-3 flex flex-col gap-4">
-          <span className="text-xs w-fit font-semibold bg-gray-700 px-2 py-1 rounded">
+          <span className="text-xs w-fit font-semibold bg-[#231f20] px-2 py-1 rounded">
             CONTACT
           </span>
           <Link
@@ -53,28 +53,28 @@ const Footer = () => {
         <div className="flex flex-wrap justify-center gap-4 text-gray-400 text-2xl">
           <Link
             className="p-3 rounded-full text-[#969696] transition hover:text-green-300 border border-[#969696] hover:border-green-300"
-            href={settings?.linkedin ? settings.linkedin : "/"}
+            href={settings?.linkedin ? settings.linkedin : "/summit"}
             aria-label="LinkedIn"
           >
             <FaLinkedin />
           </Link>
           <Link
             className="p-3 rounded-full text-[#969696] transition hover:text-green-300 border border-[#969696] hover:border-green-300"
-            href={settings?.twitter ? settings.twitter : "/"}
+            href={settings?.twitter ? settings.twitter : "/summit"}
             aria-label="X (Twitter)"
           >
             <FaTimes />
           </Link>
           <Link
             className="p-3 rounded-full text-[#969696] transition hover:text-green-300 border border-[#969696] hover:border-green-300"
-            href={settings?.instagram ? settings.instagram : "/"}
+            href={settings?.instagram ? settings.instagram : "/summit"}
             aria-label="Instagram"
           >
             <FaInstagram />
           </Link>
           <Link
             className="p-3 rounded-full text-[#969696] transition hover:text-green-300 border border-[#969696] hover:border-green-300"
-            href={settings?.youtube ? settings.youtube : "/"}
+            href={settings?.youtube ? settings.youtube : "/summit"}
             aria-label="YouTube"
           >
             <FaYoutube />

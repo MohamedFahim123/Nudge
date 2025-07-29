@@ -49,7 +49,7 @@ const MyTicketSection = () => {
   };
 
   return (
-    <TicketCardWithNote onSubmitNote={handleSubmitNote} getMyAvailabelTickets={getMyAvailabelTickets} ticket={myTicket} />
+    <TicketCardWithNote onSubmitNote={handleSubmitNote} ticket={myTicket} />
   );
 };
 

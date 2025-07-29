@@ -1,6 +1,5 @@
-import Loader from "@/components/Loader/Loader";
 import { Metadata } from "next";
-import { Suspense } from "react";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Nudge | Home",
@@ -8,7 +7,8 @@ export const metadata: Metadata = {
 };
 
 const HomePage = () => {
-  return <Suspense fallback={<Loader />}>Home Page</Suspense>;
+  redirect("/summit");
+  // return <Suspense fallback={<Loader />}>Home Page</Suspense>;
 };
 
 export default HomePage;

@@ -18,12 +18,12 @@ export default function LogoutBtn() {
     if (res.status !== 200) {
       await removeTokenFromServerCookies();
       showToast(res.message || "faild To Logout", "error");
-      router.push("/");
+      router.push("/summit");
     }
     await removeTokenFromServerCookies();
     setLogoutLoading(false);
     showToast("Logout successful", "success");
-    router.push("/");
+    router.push("/summit");
   };
 
   return (

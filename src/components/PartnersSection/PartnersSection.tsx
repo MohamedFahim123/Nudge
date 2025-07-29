@@ -34,8 +34,8 @@ const PartnersSection = () => {
         </div>
       </div>
 
-      <div className="w-full lg:w-1/2 bg-white flex flex-col justify-center items-center gap-10 p-16">
-        <div className={`w-full h-auto ${styles.partnerSectionFade}`}>
+      <div className="w-full grid-cols-1 grid-rows-4 lg:w-1/2 bg-white">
+        <div className={`w-full h-1/2 col-span-1 row-span-2 flex items-center justify-center ${styles.partnerSectionFade}`}>
           <Image
             src="/images/chialidini.png"
             alt="Cialdini Institute"
@@ -46,7 +46,7 @@ const PartnersSection = () => {
         </div>
 
         <div
-          className={`w-full h-auto bg-gray-100 py-6 flex items-center justify-center ${styles.partnerSectionFade}`}
+          className={`w-full h-1/2 col-span-1 row-span-2 bg-gray-100 py-6 flex items-center justify-center ${styles.partnerSectionFade}`}
         >
           <Image
             src="/images/mena.png"

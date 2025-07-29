@@ -13,17 +13,17 @@ const AvTicketsTable = ({ tickets }: TicketsTableProps) => {
           <tr className="font-bold">
             <th
               colSpan={3}
-              className="px-4 py-3 text-left text-sm font-semibold text-gray-700"
+              className="px-4 py-3 text-left text-sm font-semibold text-[#231f20]"
             >
               Type
             </th>
             <th
               colSpan={3}
-              className="px-4 py-3 text-left text-sm font-semibold text-gray-700"
+              className="px-4 py-3 text-left text-sm font-semibold text-[#231f20]"
             >
               Price
             </th>
-            <th className="px-4 py-3 pe-12 text-end text-sm font-semibold text-gray-700">
+            <th className="px-4 py-3 pe-12 text-end text-sm font-semibold text-[#231f20]">
               Action
             </th>
           </tr>

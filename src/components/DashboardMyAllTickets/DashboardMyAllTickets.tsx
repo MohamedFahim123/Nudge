@@ -1,25 +1,21 @@
 "use client";
 import { useTicketsStore } from "@/store/tickets";
-import { useCallback, useEffect } from "react";
-import TicketsTable from "../TicketsTable/TicketsTable";
+import { useEffect } from "react";
 import Loader from "../Loader/Loader";
+import TicketsTable from "../TicketsTable/TicketsTable";
 
 const DashboardMyAllTickets = ({
   setView,
 }: {
-  setView: (
-    view: "All Tickets" | "My Ticket" | "UnUsed Tickets"
-  ) => void;
+  setView: (view: "All Tickets" | "My Ticket" | "UnUsed Tickets") => void;
 }) => {
   const { allTickets, allTicketsLoading, getAllTickets } = useTicketsStore();
 
-  const getAllAvailabelTickets = useCallback(async () => {
-    if (!allTicketsLoading) await getAllTickets();
-  }, [getAllTickets, allTicketsLoading]);
-
   useEffect(() => {
-    getAllAvailabelTickets();
-  }, [getAllAvailabelTickets]);
+    (async () => {
+      await getAllTickets();
+    })();
+  }, [getAllTickets]);
 
   if (allTicketsLoading) return <Loader />;
   if (!allTickets) return null;

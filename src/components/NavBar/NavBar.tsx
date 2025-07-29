@@ -32,10 +32,10 @@ const NavBar = () => {
   if (settingsLoading) return null;
 
   return (
-    <nav className="bg-[#1E1E1E] py-5">
+    <nav className="bg-[#250168] py-5">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-4 px-4">
         <Link
-          href="/home"
+          href="/summit"
           className="flex items-center space-x-3 rtl:space-x-reverse"
         >
           <Image
@@ -50,7 +50,7 @@ const NavBar = () => {
         <button
           onClick={() => setIsOpen(!isOpen)}
           type="button"
-          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-400 rounded-lg md:hidden hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
+          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-400 rounded-lg md:hidden hover:bg-[#231f20] focus:outline-none focus:ring-2 focus:ring-gray-500"
           aria-controls="navbar-default"
           aria-expanded={isOpen}
         >
@@ -76,18 +76,7 @@ const NavBar = () => {
           className={`w-full md:block md:w-auto ${isOpen ? "block" : "hidden"}`}
           id="navbar-default"
         >
-          <ul className="font-medium flex flex-col items-center p-4 md:p-0 mt-4 border border-gray-700 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
-            <li>
-              <Link
-                onClick={() => setIsOpen(!isOpen)}
-                href="/home"
-                className={`block py-2 px-3 ${
-                  pathname === "/home" ? "text-[#5bf286]" : "text-white"
-                } rounded-sm md:bg-transparent md:p-0`}
-              >
-                Home
-              </Link>
-            </li>
+          <ul className="font-medium flex flex-col items-center p-4 md:p-0 mt-4 border border-[#231f20] rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
             <li>
               <Link
                 onClick={() => setIsOpen(!isOpen)}

@@ -88,9 +88,14 @@ const TransactionDetailsPage = async ({
               <strong>Status:</strong>{" "}
               <span
                 className={`inline-block px-2 py-1 text-xs rounded-full font-medium ${
-                  ticket.status === "Confirmed Attendee"
+                  ticket.status === "Confirmed Attendee" ||
+                  ticket.status === "Confirmed Invited Attendee"
                     ? "bg-green-100 text-green-700"
-                    : "bg-yellow-100 text-yellow-700"
+                    : ticket.status === "Prospect"
+                    ? "bg-yellow-100 text-yellow-700"
+                    : ticket.status === "Rejected"
+                    ? "bg-red-100 text-red-700"
+                    : "bg-gray-100 text-[#231f20]"
                 }`}
               >
                 {ticket.status}

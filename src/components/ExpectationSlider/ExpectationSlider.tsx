@@ -49,18 +49,9 @@ const ExpectationSlider = () => {
         <h2
           className={`text-4xl md:text-5xl font-regular text-[#250168] mb-4 max-w-3xl ${styles.fadeSlideUp}`}
         >
-          We are committed to meeting
-          <br /> all your expectations
+          We designed two days executive summit for you, providing you with:
         </h2>
 
-        <p
-          className={`italic text-black text-lg md:text-xl font-regular mb-8 leading-relaxed ${styles.fadeSlideUp}`}
-        >
-          Have you attended a summit where you learned something but didn’t know
-          how to apply it?
-          <br />
-          In two transformational days at the Hilton Dead Sea, you have ...
-        </p>
 
         <div className={`relative ${styles.fadeSlideUp}`}>
           <Swiper
@@ -81,7 +72,7 @@ const ExpectationSlider = () => {
                 <div className="flex flex-col items-center text-center px-4 pt-20">
                   <div
                     className="p-2 mb-4 hover:scale-105 transition bg-green-400 flex justify-center items-center rounded-full"
-                    style={{ width: "60px", height: "60px" }}
+                    style={{ width: "3.75rem", height: "3.75rem" }}
                   >
                     <Image
                       src={item.icon}

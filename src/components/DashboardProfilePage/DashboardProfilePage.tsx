@@ -31,7 +31,7 @@ export default function ProfilePage({ token }: { token: string }) {
         <button
           onClick={() => setView("view")}
           className={`btn cursor-pointer ${
-            view === "view" && "bg-gray-700 text-white hover:text-gray-700"
+            view === "view" && "bg-[#231f20] text-white hover:text-[#231f20]"
           }`}
         >
           View Profile
@@ -39,7 +39,7 @@ export default function ProfilePage({ token }: { token: string }) {
         <button
           onClick={() => setView("edit")}
           className={`btn cursor-pointer ${
-            view === "edit" && "bg-gray-700 text-white hover:text-gray-700"
+            view === "edit" && "bg-[#231f20] text-white hover:text-[#231f20]"
           }`}
         >
           Edit Profile
@@ -47,7 +47,7 @@ export default function ProfilePage({ token }: { token: string }) {
         <button
           onClick={() => setView("password")}
           className={`btn cursor-pointer ${
-            view === "password" && "bg-gray-700 text-white hover:text-gray-700"
+            view === "password" && "bg-[#231f20] text-white hover:text-[#231f20]"
           }`}
         >
           Change Password
@@ -55,7 +55,7 @@ export default function ProfilePage({ token }: { token: string }) {
         <button
           onClick={() => setView("email")}
           className={`btn cursor-pointer ${
-            view === "email" && "bg-gray-700 text-white hover:text-gray-700"
+            view === "email" && "bg-[#231f20] text-white hover:text-[#231f20]"
           }`}
         >
           Change Email

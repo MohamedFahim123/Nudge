@@ -1,14 +1,8 @@
 "use client";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { FaArrowLeft } from "react-icons/fa";
 
-const PaymentFailed = ({ sessionId }: { sessionId: string | null }) => {
-  const router = useRouter();
-  if (!sessionId) {
-    if (typeof window !== "undefined") router.replace("/404");
-    return;
-  }
+const PaymentFailed = () => {
   return (
     <div className={`nc-PayFailedPage`} data-nc-id="PayFailedPage">
       <main className="container mt-11 mb-24 lg:mb-32 px-4">
@@ -25,8 +19,8 @@ const PaymentFailed = ({ sessionId }: { sessionId: string | null }) => {
           <hr className="border-neutral-200" />
           <div>
             <Link
-              href="/"
-              className="cursor-pointer inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg transition"
+              href="/summit"
+              className="cursor-pointer inline-flex items-center gap-2 bg-[#250168] hover:bg-purple-700 text-white px-4 py-2 rounded-lg transition"
             >
               <FaArrowLeft /> Go Back Home
             </Link>

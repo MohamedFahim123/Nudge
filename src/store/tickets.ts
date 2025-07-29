@@ -82,7 +82,8 @@ export const useTicketsStore = create<UseTicketsStoreIterface>((set) => ({
         },
       }
     );
-    set({ myTicket: res.data.booking, myTicketLoading: false });
+    console.log(res)
+    set({ myTicket: res?.data?.booking ? res.data.booking : null, myTicketLoading: false });
   },
   unUsedTickets: null,
   unUsedTicketsLoading: false,

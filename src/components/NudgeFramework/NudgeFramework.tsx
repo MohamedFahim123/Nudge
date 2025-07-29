@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import styles from "./NudgeFramework.module.css"; // 👈 import the CSS module
+import styles from "./NudgeFramework.module.css";
 
 const NudgeFramework = () => {
   return (
@@ -13,29 +13,30 @@ const NudgeFramework = () => {
           <em className="block text-black mb-6 mt-4 text-xl md:text-2xl font-regular">
             The Science is Proven!
           </em>
-          <p className="text-lg max-w-2xl text-gray-700 leading-relaxed">
+          <p className="text-lg max-w-2xl text-[#231f20] leading-relaxed">
             Every business, including yours, has a blind spot. While revenue is
             the key to success, most teams unknowingly build on shaky ground.
-            Products launch but don’t land. Trust slips through the cracks.
+            Products launch but don’t land. Trust slips through the
+            cracks. Influence is left to instinct.
           </p>
-          <p className="text-lg max-w-2xl text-gray-700 mt-4 leading-relaxed">
-            Influence is left to instinct. After working with multinational
-            corporations and various-sized businesses for the second decade and
-            learning from thought leaders in psychology, innovation, and
-            strategy, Hasan Qasem, Nudge’s Executive Director, designed a
-            science — an evidence-based four-pillar framework to help
-            corporations maximize revenue by applying the aforementioned
-            sciences.
+          <p className="text-lg max-w-2xl text-[#231f20] mt-4 leading-relaxed">
+            After working with multinational corporations and various-sized
+            businesses for the second decade and learning from thought leaders
+            in psychology, innovation, and strategy, Hasan Qasem, Nudge’s
+            Executive Director, designed a science — an evidence-based
+            four-pillar framework to help corporations maximize revenue by
+            applying the aforementioned sciences.
           </p>
         </div>
 
-        <div className={`md:col-span-5 flex justify-center ${styles.fadeInUp}`}>
+        <div className={`md:col-span-5 flex justify-center overflow-hidden ${styles.fadeInUp}`}>
           <Image
-            src="/images/frameWork.png"
+            src="/images/steps.webp"
             alt="pillars"
-            width={400}
-            height={400}
+            width={800}
+            height={800}
             className="object-contain"
+            style={{ transform: "scale(1.1) translatex(20px,30px)" }}
           />
         </div>
       </div>

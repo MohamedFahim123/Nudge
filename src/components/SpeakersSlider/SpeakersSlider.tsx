@@ -83,7 +83,10 @@ const SpeakersSlider = () => {
                         alt={speaker.name}
                         width={500}
                         height={500}
-                        className="w-full h-full object-cover rounded-lg"
+                        className="w-full h-100 object-cover rounded-lg"
+                        style={{
+                          height: "100%",
+                        }}
                       />
                     </div>
 

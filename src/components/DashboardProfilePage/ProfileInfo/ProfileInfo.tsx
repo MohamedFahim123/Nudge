@@ -35,7 +35,7 @@ export default function ProfileInfo({ user }: Props) {
       </p>
       <p>
         <strong>LinkedIn:</strong>{" "}
-        <a href={user?.linkedin_profile} className="text-purple-600 underline">
+        <a href={user?.linkedin_profile} className="text-[#250168] underline">
           {user?.linkedin_profile}
         </a>
       </p>

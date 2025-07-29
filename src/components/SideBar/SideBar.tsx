@@ -67,8 +67,8 @@ const Sidebar = ({ isOpen, setIsOpen, isMobile }: SidebarProps) => {
 
       {!isMobile && (
         <aside className="hidden lg:flex flex-col w-54 sticky top-0 h-screen bg-gray-100 border-r border-r-gray-200 shadow-xl z-30">
-          <h2 className="text-lg font-bold mb-4 border-b-2 bg-purple-600 border-white py-4 px-4">
-            <Link href={"/"}>
+          <h2 className="text-lg font-bold mb-4 border-b-2 bg-[#250168] border-white py-4 px-4 flex justify-center">
+            <Link href={"/summit"}>
               <Image
                 width={100}
                 height={100}
@@ -81,8 +81,8 @@ const Sidebar = ({ isOpen, setIsOpen, isMobile }: SidebarProps) => {
             <li
               className={`px-4 py-2 cursor-pointer rounded-md ${
                 pathname.includes("profile")
-                  ? "bg-purple-600 text-white"
-                  : "hover:bg-purple-600 cursor-pointer text-black hover:text-white transition-all ease-in-out duration-300"
+                  ? "bg-[#250168] text-white"
+                  : "hover:bg-[#250168] cursor-pointer text-black hover:text-white transition-all ease-in-out duration-300"
               }`}
             >
               <Link href="/dashboard/profile" className={`block font-semibold`}>
@@ -92,8 +92,8 @@ const Sidebar = ({ isOpen, setIsOpen, isMobile }: SidebarProps) => {
             <li
               className={`px-4 py-2 rounded-md cursor-pointer ${
                 pathname.includes("tickets")
-                  ? "bg-purple-600 text-white"
-                  : "hover:bg-purple-600 text-black hover:text-white transition-all ease-in-out duration-300"
+                  ? "bg-[#250168] text-white"
+                  : "hover:bg-[#250168] text-black hover:text-white transition-all ease-in-out duration-300"
               }`}
             >
               <Link href="/dashboard/tickets" className={`block font-semibold`}>
@@ -103,8 +103,8 @@ const Sidebar = ({ isOpen, setIsOpen, isMobile }: SidebarProps) => {
             <li
               className={`px-4 py-2 rounded-md cursor-pointer ${
                 pathname.includes("buy-ticket")
-                  ? "bg-purple-600 text-white"
-                  : "hover:bg-purple-600 text-black hover:text-white transition-all ease-in-out duration-300"
+                  ? "bg-[#250168] text-white"
+                  : "hover:bg-[#250168] text-black hover:text-white transition-all ease-in-out duration-300"
               }`}
             >
               <Link
@@ -117,8 +117,8 @@ const Sidebar = ({ isOpen, setIsOpen, isMobile }: SidebarProps) => {
             <li
               className={`px-4 py-2 rounded-md cursor-pointer ${
                 pathname.includes("my-cart")
-                  ? "bg-purple-600 text-white"
-                  : "hover:bg-purple-600 text-black hover:text-white transition-all ease-in-out duration-300"
+                  ? "bg-[#250168] text-white"
+                  : "hover:bg-[#250168] text-black hover:text-white transition-all ease-in-out duration-300"
               }`}
             >
               <Link href="/dashboard/my-cart" className={`block font-semibold`}>
@@ -128,8 +128,8 @@ const Sidebar = ({ isOpen, setIsOpen, isMobile }: SidebarProps) => {
             <li
               className={`px-4 py-2 rounded-md cursor-pointer ${
                 pathname.includes("my-transactions")
-                  ? "bg-purple-600 text-white"
-                  : "hover:bg-purple-600 text-black hover:text-white transition-all ease-in-out duration-300"
+                  ? "bg-[#250168] text-white"
+                  : "hover:bg-[#250168] text-black hover:text-white transition-all ease-in-out duration-300"
               }`}
             >
               <Link

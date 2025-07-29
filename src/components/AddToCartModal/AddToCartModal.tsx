@@ -188,7 +188,7 @@ const AddToCartModal = ({ ticketId, onClose }: ModalProps) => {
                       <label className="block text-sm mb-1">Quantity</label>
                       <input
                         {...register(`tickets.${i}.quantity`)}
-                        className="w-full border rounded px-2 py-1 outline-none border-gray-300 bg-white focus:border-purple-600 transition-all duration-300"
+                        className="w-full border rounded px-2 py-1 outline-none border-gray-300 bg-white focus:border-[#250168] transition-all duration-300"
                         placeholder="Quantity"
                       />
                     </div>
@@ -199,7 +199,7 @@ const AddToCartModal = ({ ticketId, onClose }: ModalProps) => {
                         <div key={j} className="flex items-center gap-2 mb-2">
                           <input
                             {...register(`tickets.${i}.codes.${j}`)}
-                            className="flex-1 border rounded px-2 py-1 outline-none border-gray-300 bg-white focus:border-purple-600 transition-all duration-300"
+                            className="flex-1 border rounded px-2 py-1 outline-none border-gray-300 bg-white focus:border-[#250168] transition-all duration-300"
                             placeholder={`Code ${j + 1}`}
                           />
                           {ticketsWatch[i].codes.length > 1 && (
@@ -215,7 +215,7 @@ const AddToCartModal = ({ ticketId, onClose }: ModalProps) => {
                       ))}
                       <button
                         type="button"
-                        className="cursor-pointer text-purple-600 hover:underline transition-all duration-300 text-sm mt-1"
+                        className="cursor-pointer text-[#250168] hover:underline transition-all duration-300 text-sm mt-1"
                         onClick={() => addCodeToTicket(i)}
                       >
                         + Add Code
@@ -231,14 +231,14 @@ const AddToCartModal = ({ ticketId, onClose }: ModalProps) => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="cursor-pointer bg-purple-600 text-white px-4 py-2 rounded hover:bg-white hover:text-purple-600 border border-purple-600 transition-all duration-300"
+              className="cursor-pointer bg-[#250168] text-white px-4 py-2 rounded hover:bg-white hover:text-[#250168] border border-[#250168] transition-all duration-300"
             >
               {isSubmitting ? "Submitting..." : "Submit"}
             </button>
             <button
               type="button"
               onClick={onClose}
-              className="cursor-pointer bg-gray-700 text-white px-4 py-2 rounded hover:bg-white hover:text-gray-700 border border-gray-700 transition-all duration-300"
+              className="cursor-pointer bg-[#231f20] text-white px-4 py-2 rounded hover:bg-white hover:text-[#231f20] border border-[#231f20] transition-all duration-300"
             >
               Cancel
             </button>

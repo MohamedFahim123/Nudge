@@ -11,22 +11,22 @@ export default function TicketsTable({ tickets, setView }: TicketsTableProps) {
       <table className="min-w-full divide-y divide-gray-200 shadow-md rounded-lg overflow-hidden bg-white">
         <thead className="bg-gray-100">
           <tr>
-            <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
+            <th className="px-4 py-3 text-left text-sm font-semibold text-[#231f20]">
               Name
             </th>
-            <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
+            <th className="px-4 py-3 text-left text-sm font-semibold text-[#231f20]">
               Email
             </th>
-            <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
+            <th className="px-4 py-3 text-left text-sm font-semibold text-[#231f20]">
               Type
             </th>
-            <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
+            <th className="px-4 py-3 text-left text-sm font-semibold text-[#231f20]">
               Status
             </th>
-            <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
+            <th className="px-4 py-3 text-left text-sm font-semibold text-[#231f20]">
               Transaction
             </th>
-            <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
+            <th className="px-4 py-3 text-left text-sm font-semibold text-[#231f20]">
               Your Ticket
             </th>
           </tr>
@@ -48,13 +48,14 @@ export default function TicketsTable({ tickets, setView }: TicketsTableProps) {
               <td className="px-4 py-3">
                 <span
                   className={`px-2 py-1 rounded-full text-xs font-semibold ${
-                    ticket.status === "Confirmed Attendee"
+                    ticket.status === "Confirmed Attendee" ||
+                    ticket.status === "Confirmed Invited Attendee"
                       ? "bg-green-100 text-green-700"
                       : ticket.status === "Prospect"
                       ? "bg-yellow-100 text-yellow-700"
                       : ticket.status === "Rejected"
                       ? "bg-red-100 text-red-700"
-                      : "bg-gray-100 text-gray-700"
+                      : "bg-gray-100 text-[#231f20]"
                   }`}
                 >
                   {ticket.status}

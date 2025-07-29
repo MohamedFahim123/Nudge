@@ -51,7 +51,7 @@ const TicketSection = () => {
             <tbody>
               {features.map((feature, index) => (
                 <tr key={index} className="bg-white border-b border-gray-100">
-                  <td className="px-4 py-3 text-lg text-gray-700 border-e border-gray-100">
+                  <td className="px-4 py-3 text-lg text-[#231f20] border-e border-gray-100">
                     {feature}
                   </td>
                   <td className="px-4 py-3 text-lg text-center border-e border-gray-100">

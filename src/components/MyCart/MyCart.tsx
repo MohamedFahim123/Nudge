@@ -111,7 +111,7 @@ const MyCart = ({ cartData, getCartData }: MyCartProps) => {
                   <p className="text-green-600 font-medium">Your Ticket</p>
                 )}
                 {!item.your_ticket && item.invited && (
-                  <div className="text-sm text-gray-700 mt-1">
+                  <div className="text-sm text-[#231f20] mt-1">
                     <p>Invited: {item.invited.name}</p>
                     <p>Code: {item.invited.code}</p>
                   </div>
@@ -174,7 +174,7 @@ const MyCart = ({ cartData, getCartData }: MyCartProps) => {
           title="Checkout Now"
           onClick={handleCheckout}
           disabled={isSubmittingCheckout || cartData?.length === 0}
-          className="w-full disabled:opacity-50 bg-purple-600 border border-purple-600 cursor-pointer text-white py-2 rounded hover:bg-white hover:text-purple-600 transition-all duration-300"
+          className="w-full disabled:opacity-50 disabled:cursor-not-allowed bg-[#250168] border border-[#250168] cursor-pointer text-white py-2 rounded hover:bg-white hover:text-[#231f20] transition-all duration-300"
         >
           {isSubmittingCheckout ? "Processing..." : "Checkout Now"}
         </button>

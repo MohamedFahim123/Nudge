@@ -82,7 +82,7 @@ export default function EditProfileForm({ user, token, setView }: Props) {
           type="file"
           accept="image/*"
           {...register("profile_image")}
-          className="w-full bg-gray-50 outline-none border border-gray-300 focus:border-purple-600 text-sm rounded-lg p-2.5"
+          className="w-full bg-gray-50 outline-none border border-gray-300 focus:border-[#250168] text-sm rounded-lg p-2.5"
           onChange={(e) => {
             const file = e.target.files?.[0];
             if (file) {
@@ -120,7 +120,7 @@ export default function EditProfileForm({ user, token, setView }: Props) {
           type="file"
           accept=".pdf,.doc,.docx,.xls,.xlsx,.zip,.rar"
           {...register("passport_file")}
-          className="w-full bg-gray-50 outline-none border border-gray-300 focus:border-purple-600 text-sm rounded-lg p-2.5"
+          className="w-full bg-gray-50 outline-none border border-gray-300 focus:border-[#250168] text-sm rounded-lg p-2.5"
           onChange={(e) => {
             const file = e.target.files?.[0];
             if (file) {
@@ -157,7 +157,7 @@ export default function EditProfileForm({ user, token, setView }: Props) {
               message: "Phone number must be 11 digits",
             },
           })}
-          className={`input outline-none border-2 border-gray-300 focus:border-purple-600 ${
+          className={`input outline-none border-2 border-gray-300 focus:border-[#250168] ${
             errors.phone ? "errorInput" : ""
           }`}
           placeholder={user.phone}
@@ -183,7 +183,7 @@ export default function EditProfileForm({ user, token, setView }: Props) {
               message: "Company name must be at least 3 characters",
             },
           })}
-          className={`input outline-none border-2 border-gray-300 focus:border-purple-600 ${
+          className={`input outline-none border-2 border-gray-300 focus:border-[#250168] ${
             errors.company ? "errorInput" : ""
           }`}
           placeholder={user.company}
@@ -204,7 +204,7 @@ export default function EditProfileForm({ user, token, setView }: Props) {
           {...register("linkedin_profile", {
             required: "LinkedIn profile is required",
           })}
-          className={`input outline-none border-2 border-gray-300 focus:border-purple-600 ${
+          className={`input outline-none border-2 border-gray-300 focus:border-[#250168] ${
             errors.linkedin_profile ? "errorInput" : ""
           }`}
           placeholder={user.linkedin_profile}
@@ -220,7 +220,7 @@ export default function EditProfileForm({ user, token, setView }: Props) {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="btn mt-5 cursor-pointer bg-purple-600 text-white hover:text-purple-600"
+          className="btn mt-5 cursor-pointer bg-[#250168] text-white hover:text-[#250168]"
         >
           {isSubmitting ? "Loading..." : "Save"}
         </button>

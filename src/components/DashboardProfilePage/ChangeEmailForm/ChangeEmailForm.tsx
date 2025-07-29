@@ -80,7 +80,7 @@ export default function ChangeEmailForm({ email, token }: Props) {
           })}
           className={`${
             errors.new_email && "errorInput"
-          } input w-full bg-gray-50 outline-none border border-gray-300 focus:border-purple-600 text-sm rounded-lg p-2.5`}
+          } input w-full bg-gray-50 outline-none border border-gray-300 focus:border-[#250168] text-sm rounded-lg p-2.5`}
           placeholder="Email"
         />
         {errors.new_email && (
@@ -93,7 +93,7 @@ export default function ChangeEmailForm({ email, token }: Props) {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="btn  cursor-pointer bg-purple-600 text-white hover:text-purple-600"
+          className="btn  cursor-pointer bg-[#250168] text-white hover:text-[#250168]"
         >
           {isSubmitting ? "Loading..." : "Change Email"}
         </button>

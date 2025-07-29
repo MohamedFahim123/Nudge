@@ -13,26 +13,22 @@ const SummitInfo = () => {
     <section
       className={`text-white py-16 px-4 sm:px-6 lg:px-8 ${styles.summitInfoSection}`}
     >
-      <div className={`max-w-screen-xl mx-auto px-4 ${styles.summitInfoContainer}`}>
+      <div
+        className={`max-w-screen-xl mx-auto px-4 ${styles.summitInfoContainer}`}
+      >
         <div className="text-center mb-10">
           <p className="text-2xl sm:text-3xl md:text-4xl italic font-light max-w-5xl mx-auto mb-6">
-            From the world&apos;s lowest point on earth, elevate to your
-            business&apos;s highest potential—because the climb starts here!
+            It&apos;s a game of single-tasking!
+          </p>
+          <p className="text-base sm:text-lg leading-relaxed mb-10 text-white">
+            By taking you to the peace of desert, the Nudge Summit will be a
+            memorable experience at Al Maha Desert Resort & Spa - Dubai
           </p>
           <p className="text-2xl md:text-4xl font-bold text-green-400">
             October 18 - 19, 2025
           </p>
         </div>
 
-        <div className="max-w-5xl mx-auto bg-white/10 backdrop-blur-sm rounded-xl p-6 sm:p-8 md:p-10 text-center">
-          <p className="text-base sm:text-lg leading-relaxed text-white">
-            The Nudge Summit 2025 will take place on October 18th and 19th,
-            2025, at the King Hussein Bin Talal Convention Centre and Hilton
-            Dead Sea Resort & Spa, situated on the shores of the Dead Sea in
-            Jordan. You will receive a special price offer for room bookings at
-            the Hilton Dead Sea via email after completing your registration.
-          </p>
-        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 lg:gap-12 mt-12">
           {images.map((src, index) => (

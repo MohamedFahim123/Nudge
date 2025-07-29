@@ -14,7 +14,7 @@ const AddToCartBtn = ({ text, ticketId }: Props) => {
     <>
       <button
         type="button"
-        className="cursor-pointer duration-300 border border-green-600 bg-green-600 text-white px-4 py-2 rounded-md hover:bg-white hover:text-green-600 transition"
+        className="cursor-pointer duration-300 border border-[#1fc7bc] bg-[#1fc7bc] text-white px-4 py-2 rounded-md hover:bg-white hover:text-[#1fc7bc] transition"
         onClick={() => setShowModal(true)}
       >
         {text}

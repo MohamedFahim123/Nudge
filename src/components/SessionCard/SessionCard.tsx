@@ -39,7 +39,7 @@ const SessionCard = ({
 
     <div className="text-center sm:text-left">
       <h4 className="font-semibold text-base text-black">{session.time}</h4>
-      <h5 className="text-lg text-purple-800 font-bold">{session.title}</h5>
+      <h5 className="text-lg text-[#231f20] font-bold">{session.title}</h5>
       <p className="text-gray-600 text-sm mt-1">{session.description}</p>
     </div>
   </motion.div>

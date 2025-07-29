@@ -82,7 +82,7 @@ export default function ChangePasswordForm({ token }: { token: string }) {
           placeholder="Old password"
           className={`${styles.formInput} ${
             errors.current_password && `errorInput mb-0`
-          } border-gray-300 focus:border-purple-600 outline-none bg-gray-50 border  text-sm rounded-lg block w-full p-2.5`}
+          } border-gray-300 focus:border-[#250168] outline-none bg-gray-50 border  text-sm rounded-lg block w-full p-2.5`}
           {...register("current_password", {
             required: "Password is required",
           })}
@@ -115,7 +115,7 @@ export default function ChangePasswordForm({ token }: { token: string }) {
           placeholder="New password"
           className={`${styles.formInput} ${
             errors.new_password && `errorInput mb-0`
-          } border-gray-300 focus:border-purple-600 outline-none bg-gray-50 border  text-sm rounded-lg block w-full p-2.5`}
+          } border-gray-300 focus:border-[#250168] outline-none bg-gray-50 border  text-sm rounded-lg block w-full p-2.5`}
           {...register("new_password", {
             required: "New Password is required",
           })}
@@ -150,7 +150,7 @@ export default function ChangePasswordForm({ token }: { token: string }) {
           placeholder="New password confirm"
           className={`${styles.formInput} ${
             errors.new_password_confirmation && `errorInput mb-0`
-          } border-gray-300 focus:border-purple-600 outline-none bg-gray-50 border text-sm rounded-lg block w-full p-2.5`}
+          } border-gray-300 focus:border-[#250168] outline-none bg-gray-50 border text-sm rounded-lg block w-full p-2.5`}
           {...register("new_password_confirmation", {
             required: "New Password Confirm is required",
             validate: (value) =>
@@ -175,7 +175,7 @@ export default function ChangePasswordForm({ token }: { token: string }) {
       <div className="col-span-2 mt-5">
         <button
           disabled={isSubmitting}
-          className="btn cursor-pointer bg-purple-600 text-white hover:text-purple-600"
+          className="btn cursor-pointer bg-[#250168] text-white hover:text-[#250168]"
         >
           {isSubmitting ? "Loading..." : "Update Password"}
         </button>

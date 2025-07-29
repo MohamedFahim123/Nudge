@@ -54,7 +54,7 @@ const ArcChart = ({ percent, color, label }: ArcChartProps) => {
         {percent}%
       </span>
 
-      <p className="text-sm md:text-base text-center text-gray-700 w-full max-w-xs">
+      <p className="text-sm md:text-base text-center text-[#231f20] w-full max-w-xs">
         {label}
       </p>
     </motion.div>
