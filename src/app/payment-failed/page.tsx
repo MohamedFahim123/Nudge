@@ -8,10 +8,7 @@ export const metadata: Metadata = {
 };
 
 const PayFailed = () => {
-  const searchParams = new URLSearchParams();
-  const sessionId = searchParams.get("session_id");
-
-  return <PaymentFailed sessionId={sessionId} />;
+  return <PaymentFailed />;
 };
 
 export default React.memo(PayFailed);

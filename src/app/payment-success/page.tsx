@@ -8,9 +8,6 @@ export const metadata: Metadata = {
 };
 
 function PaySuccessPage() {
-  const searchParams = new URLSearchParams();
-  const sessionId = searchParams.get("session_id");
-
-  return <PaymentSuccess sessionId={sessionId} />;
+  return <PaymentSuccess />;
 }
 export default React.memo(PaySuccessPage);
