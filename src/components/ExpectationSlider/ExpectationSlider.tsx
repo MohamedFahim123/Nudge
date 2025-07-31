@@ -1,5 +1,6 @@
 "use client";
 
+import { useHomeDataStore } from "@/store/homedata";
 import Image from "next/image";
 import React from "react";
 import "swiper/css";
@@ -7,42 +8,13 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Autoplay, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import styles from "./ExpectationSlider.module.css"; // 👈 Import the CSS module
-
-const items = [
-  {
-    id: 1,
-    icon: "/images/Icons/1.svg",
-    text: "Keynotes with actionable insights",
-  },
-  {
-    id: 2,
-    icon: "/images/Icons/2.svg",
-    text: "Workshops to apply and practice",
-  },
-  {
-    id: 3,
-    icon: "/images/Icons/3.svg",
-    text: "Pre- and post-assessments to track your learning",
-  },
-  {
-    id: 4,
-    icon: "/images/Icons/322.svg",
-    text: "Pre- and post-assessments to track your learning",
-  },
-  {
-    id: 5,
-    icon: "/images/Icons/4.svg",
-    text: "Pre- and post-assessments to track your learning",
-  },
-  {
-    id: 6,
-    icon: "/images/Icons/5.svg",
-    text: "Pre- and post-assessments to track your learning",
-  },
-];
+import styles from "./ExpectationSlider.module.css";
 
 const ExpectationSlider = () => {
+  const { summits } = useHomeDataStore();
+
+  if (!summits) return null;
+
   return (
     <section className="w-full py-16 bg-gray-100">
       <div className="max-w-screen-xl mx-auto px-4">
@@ -51,7 +23,6 @@ const ExpectationSlider = () => {
         >
           We designed two days executive summit for you, providing you with:
         </h2>
-
 
         <div className={`relative ${styles.fadeSlideUp}`}>
           <Swiper
@@ -67,23 +38,23 @@ const ExpectationSlider = () => {
             loop={true}
             className="expectation-swiper"
           >
-            {items.map((item) => (
-              <SwiperSlide key={item.id}>
+            {summits.map((item, idx) => (
+              <SwiperSlide key={idx}>
                 <div className="flex flex-col items-center text-center px-4 pt-20">
                   <div
                     className="p-2 mb-4 hover:scale-105 transition bg-green-400 flex justify-center items-center rounded-full"
                     style={{ width: "3.75rem", height: "3.75rem" }}
                   >
                     <Image
-                      src={item.icon}
-                      alt={`Icon ${item.id}`}
+                      src={item.image}
+                      alt={`Icon ${idx}`}
                       width={60}
                       height={60}
                       className="object-contain"
                     />
                   </div>
                   <p className="text-gray-800 font-regular text-xl">
-                    {item.text}
+                    {item.description}
                   </p>
                 </div>
               </SwiperSlide>

@@ -48,7 +48,6 @@ export const useTransactionsStore = create<TransactionsStore>((set, get) => ({
       const res = await fetchApi<{ data: { transactions: Transaction[] } }>(
         `transactions?t=${new Date().getTime()}`,
         {
-          cache: "force-cache",
           headers: {
             Accept: "application/json",
             Authorization: `Bearer ${await getTokenFromServerCookies()}`,

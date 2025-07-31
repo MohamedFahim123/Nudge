@@ -1,5 +1,5 @@
-"use client";
 import Link from "next/link";
+import React from "react";
 import { FaArrowLeft } from "react-icons/fa";
 
 const PaymentSuccess = () => {
@@ -20,7 +20,7 @@ const PaymentSuccess = () => {
 
           <div>
             <Link
-              href="/summit"
+              href="/"
               className="cursor-pointer inline-flex items-center gap-2 bg-[#250168] hover:bg-purple-700 text-white px-4 py-2 rounded-lg transition"
             >
               <FaArrowLeft /> Go Back Home
@@ -32,4 +32,4 @@ const PaymentSuccess = () => {
   );
 };
 
-export default PaymentSuccess;
+export default React.memo(PaymentSuccess);

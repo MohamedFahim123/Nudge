@@ -1,27 +1,16 @@
 "use client";
 
-import { Suspense, useCallback, useEffect } from "react";
+import { useTicketsStore } from "@/store/tickets";
+import { Suspense } from "react";
 import Loader from "../Loader/Loader";
 import TicketsTable from "../TicketsTable/TicketsTable";
-import { useTicketsStore } from "@/store/tickets";
 
 const UnUsedTickets = ({
   setView,
 }: {
-  setView: (
-    view: "All Tickets" | "My Ticket" | "UnUsed Tickets"
-  ) => void;
+  setView: (view: "All Tickets" | "My Ticket" | "UnUsed Tickets") => void;
 }) => {
-  const { unUsedTickets, unUsedTicketsLoading, getUnUsedTickets } =
-    useTicketsStore();
-
-  const getAllUnUsedTickets = useCallback(async () => {
-    if (!unUsedTicketsLoading) await getUnUsedTickets();
-  }, [getUnUsedTickets, unUsedTicketsLoading]);
-
-  useEffect(() => {
-    getAllUnUsedTickets();
-  }, [getAllUnUsedTickets]);
+  const { unUsedTickets, unUsedTicketsLoading } = useTicketsStore();
 
   if (unUsedTicketsLoading) return <Loader />;
   if (!unUsedTickets) return null;

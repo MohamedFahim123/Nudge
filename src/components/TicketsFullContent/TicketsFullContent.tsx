@@ -24,9 +24,15 @@ const TicketsFullContent = () => {
 
   useEffect(() => {
     getAllTickets();
+  }, [getAllTickets]);
+
+  useEffect(() => {
     getMyTicket();
+  }, [getMyTicket]);
+
+  useEffect(() => {
     getUnUsedTickets();
-  }, [getAllTickets, getMyTicket, getUnUsedTickets]);
+  }, [getUnUsedTickets]);
 
   if (myTicketLoading || allTicketsLoading || unUsedTicketsLoading)
     return <Loader />;

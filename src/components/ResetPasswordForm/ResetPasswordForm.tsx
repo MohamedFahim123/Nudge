@@ -24,6 +24,15 @@ interface resShape {
 }
 
 const ResetPasswordForm = () => {
+  const { showToast } = useToast();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setError,
+    formState: { errors, isSubmitting },
+  } = useForm<FormAuthInputs>();
+  const router = useRouter();
   const [viewPassword, setViewPassword] = useState<boolean>(false);
   const [viewConfirmPassword, setViewConfirmPassword] =
     useState<boolean>(false);
@@ -50,15 +59,6 @@ const ResetPasswordForm = () => {
     setCountdown(60);
     setIsDisabled(true);
   };
-  const { showToast } = useToast();
-  const {
-    register,
-    handleSubmit,
-    reset,
-    setError,
-    formState: { errors, isSubmitting },
-  } = useForm<FormAuthInputs>();
-  const router = useRouter();
 
   const onSubmit: SubmitHandler<FormAuthInputs> = async (data) => {
     try {

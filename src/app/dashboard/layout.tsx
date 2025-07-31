@@ -1,4 +1,5 @@
 "use client";
+
 import { getTokenFromServerCookies } from "@/Actions/TokenHandlers";
 import LogoutBtn from "@/components/LogoutBtn/LogoutBtn";
 import Sidebar from "@/components/SideBar/SideBar";
@@ -47,7 +48,7 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
           </h1>
           <div className="flex items-center gap-4">
             <Link
-              href="/summit"
+              href="/"
               className="flex items-center gap-2 bg-[#250168] hover:bg-white text-white hover:text-[#250168] duration-300 border border-[#250168] shadow-md rounded-lg px-4 py-2 transition-all"
             >
               <FaArrowLeft size={14} />

@@ -8,9 +8,6 @@ export interface AvTicket {
   price: number;
 }
 
-let lastFetchedTimeAllAvTickets: number = 0;
-const CACHE_EXPIRATION_TIME: number = 15 * 60 * 1000;
-
 export interface UseAvTicketsStoreIterface {
   allAvTickets: AvTicket[] | null;
   allAvTicketsLoading: boolean;
@@ -22,9 +19,6 @@ export const useAvTicketsStore = create<UseAvTicketsStoreIterface>((set) => ({
   allAvTicketsLoading: false,
   getAllAvTickets: async () => {
     const now = new Date().getTime();
-    if (now - lastFetchedTimeAllAvTickets < CACHE_EXPIRATION_TIME) return;
-    lastFetchedTimeAllAvTickets = now;
-
     set({ allAvTicketsLoading: true });
     const res = await fetchApi<{ data: { tickets: AvTicket[] } }>(
       `tickets?t=${now}`,

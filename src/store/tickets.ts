@@ -26,10 +26,6 @@ export interface MyTicket {
   type: string,
 }
 
-let lastFetchedTimeAllTickets: number = 0;
-let lastFetchedTimeMyTicket: number = 0;
-let lastFetchedTimeUnUsedTickets: number = 0;
-const CACHE_EXPIRATION_TIME: number = 15 * 60 * 1000;
 
 export interface UseTicketsStoreIterface {
   allTickets: Ticket[] | null;
@@ -48,8 +44,6 @@ export const useTicketsStore = create<UseTicketsStoreIterface>((set) => ({
   allTicketsLoading: false,
   getAllTickets: async () => {
     const now = new Date().getTime();
-    if (now - lastFetchedTimeAllTickets < CACHE_EXPIRATION_TIME) return;
-    lastFetchedTimeAllTickets = now;
 
     set({ allTicketsLoading: true });
     const res = await fetchApi<{ data: { bookings: Ticket[] } }>(
@@ -68,8 +62,6 @@ export const useTicketsStore = create<UseTicketsStoreIterface>((set) => ({
   myTicketLoading: false,
   getMyTicket: async () => {
     const now = new Date().getTime();
-    if (now - lastFetchedTimeMyTicket < CACHE_EXPIRATION_TIME) return;
-    lastFetchedTimeMyTicket = now;
 
     set({ myTicketLoading: true });
     const res = await fetchApi<{ data: { booking: MyTicket } }>(
@@ -82,15 +74,12 @@ export const useTicketsStore = create<UseTicketsStoreIterface>((set) => ({
         },
       }
     );
-    console.log(res)
     set({ myTicket: res?.data?.booking ? res.data.booking : null, myTicketLoading: false });
   },
   unUsedTickets: null,
   unUsedTicketsLoading: false,
   getUnUsedTickets: async () => {
     const now = new Date().getTime();
-    if (now - lastFetchedTimeUnUsedTickets < CACHE_EXPIRATION_TIME) return;
-    lastFetchedTimeUnUsedTickets = now;
 
     set({ unUsedTicketsLoading: true });
     const res = await fetchApi<{ data: { bookings: Ticket[] } }>(

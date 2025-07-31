@@ -16,4 +16,4 @@ const AgendaPage = () => {
   );
 };
 
-export default React.memo(AgendaPage);
+export default AgendaPage;

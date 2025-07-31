@@ -15,7 +15,7 @@ const NotFoundPage = () => {
         The page you are looking for does not exist
       </p>
       <Link
-        href={"/"}
+        href={"/home"}
         className="bg-[#250168] transition-all hover:text-[#250168] mt-10 hover:bg-white border-2 border-[#250168] text-white font-semibold py-4 px-8 rounded"
       >
         Back To Home

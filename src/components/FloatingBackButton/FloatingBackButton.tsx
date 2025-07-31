@@ -13,7 +13,7 @@ export default function FloatingBackButton() {
       transition={{ duration: 0.4, ease: "easeOut" }}
     >
       <Link
-        href="/summit"
+        href="/"
         className="flex items-center gap-2 bg-[#250168] hover:bg-white text-white hover:text-[#250168] duration-300 border border-[#250168] shadow-md rounded-full px-4 py-2 transition-all"
       >
         <FaArrowLeft size={14} />

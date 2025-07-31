@@ -131,20 +131,22 @@ const VerifyContent = ({ target }: { target: string }) => {
         )}
       </div>
       <AuthBtnSubmit name="Verify" isSubmitting={isSubmitting} />
-      <button
-        type="button"
-        onClick={handleResendClick}
-        disabled={isDisabled}
-        className={`disabled:cursor-not-allowed cursor-pointer border border-[#250168] transition-all 
-    ${
-      isDisabled
-        ? "opacity-50 bg-white text-[#250168]"
-        : "bg-white text-[#250168] hover:bg-[#250168] hover:text-white"
-    }
+      {target !== "Confirm Profile Email" && (
+        <button
+          type="button"
+          onClick={handleResendClick}
+          disabled={isDisabled}
+          className={`disabled:cursor-not-allowed cursor-pointer border border-[#250168] transition-all 
+          ${
+            isDisabled
+              ? "opacity-50 bg-white text-[#250168]"
+              : "bg-white text-[#250168] hover:bg-[#250168] hover:text-white"
+          }
     rounded-sm text-md font-semibold w-full sm:w-auto px-5 py-3 mt-3 text-center`}
-      >
-        {isDisabled ? `RESEND OTP (${countdown})` : "RESEND OTP"}
-      </button>
+        >
+          {isDisabled ? `RESEND OTP (${countdown})` : "RESEND OTP"}
+        </button>
+      )}
     </form>
   );
 };

@@ -1,9 +1,18 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import styles from "./SummitHeroSection.module.css";
+import { useHomeDataStore } from "@/store/homedata";
 
 const SummitHeroSection = () => {
+  const { getHomeData } = useHomeDataStore.getState();
+
+  React.useEffect(() => {
+    getHomeData();
+  }, [getHomeData]);
+
   return (
     <section
       className={`${styles.heroContainer} relative bg-cover bg-center text-white min-h-[75vh]`}
@@ -11,7 +20,9 @@ const SummitHeroSection = () => {
       <div className="absolute inset-0 bg-[#250168]/30" />
 
       <div className="relative min-h-[80vh] py-20 z-10 max-w-screen-xl mx-auto flex flex-col gap-12 items-center px-4 text-center">
-        <div className={`mt-10 w-full flex justify-center ${styles.fadeInItem}`}>
+        <div
+          className={`mt-10 w-full flex justify-center ${styles.fadeInItem}`}
+        >
           <Image
             width={600}
             height={500}

@@ -40,9 +40,6 @@ const TransactionDetailsPage = async ({
   const transaction = res.data.bookings.bookings[0];
   const tickets = res.data.bookings.bookings;
 
-  console.log(transaction);
-  console.log(tickets);
-
   return (
     <div className="max-100 mx-auto p-6 bg-white shadow rounded-lg">
       <h1 className="text-3xl font-bold mb-4">

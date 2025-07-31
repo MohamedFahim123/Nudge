@@ -10,12 +10,10 @@ const TransactionsTable = () => {
   const router = useRouter();
   const {
     getTransactions,
-    transactions,
     filteredTransactions,
     filterByCode,
     loading,
   } = useTransactionsStore();
-  console.log(transactions, filteredTransactions);
 
   useEffect(() => {
     getTransactions();

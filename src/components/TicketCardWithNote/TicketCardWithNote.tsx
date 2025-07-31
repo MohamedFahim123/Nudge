@@ -97,7 +97,9 @@ const TicketCardWithNote: React.FC<TicketCardProps> = ({
         </div>
       </div>
 
-      {ticket.status === "Prospect" ? (
+      {ticket.booked_by_you ||
+      ticket.status === "Confirmed Attendee" ||
+      ticket.status === "Confirmed Invited Attendee" ? (
         <textarea
           className="w-full border outline-none border-gray-300 focus:border-[#250168] focus:shadow-sm transition-all duration-300 rounded-md p-3 text-sm resize-none mb-3"
           rows={3}
@@ -108,7 +110,9 @@ const TicketCardWithNote: React.FC<TicketCardProps> = ({
       ) : null}
 
       <div className="flex items-center justify-between">
-        {ticket.status === "Prospect" && (
+        {(ticket.booked_by_you ||
+          ticket.status === "Confirmed Attendee" ||
+          ticket.status === "Confirmed Invited Attendee") && (
           <button
             type="button"
             onClick={handleSubmit}

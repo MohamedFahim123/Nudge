@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 
 const AuthPage = async () => {
   const token = await getTokenFromServerCookies();
-  if (token) redirect("/da/profile"); 
+  if (token) redirect("/dashboard/profile"); 
   else redirect("/auth/login");
 };
 

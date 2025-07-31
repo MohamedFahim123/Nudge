@@ -12,7 +12,7 @@ const Footer = () => {
       <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 items-start pb-14">
         <div className="md:col-span-9 flex flex-col sm:flex-row gap-6">
           <div className="w-full sm:w-1/4">
-            <Link href="/summit">
+            <Link href="/">
               <Image
                 src={"/images/Nudge_Default_Light.avif"}
                 alt="Nudge Logo"

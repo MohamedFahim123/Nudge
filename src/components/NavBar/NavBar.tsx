@@ -35,7 +35,7 @@ const NavBar = () => {
     <nav className="bg-[#250168] py-5">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-4 px-4">
         <Link
-          href="/summit"
+          href="/"
           className="flex items-center space-x-3 rtl:space-x-reverse"
         >
           <Image
@@ -80,9 +80,11 @@ const NavBar = () => {
             <li>
               <Link
                 onClick={() => setIsOpen(!isOpen)}
-                href="/summit"
+                href="/"
                 className={`block py-2 px-3 ${
-                  pathname === "/summit" ? "text-[#5bf286]" : "text-white"
+                  pathname === "/" || pathname === "/home"
+                    ? "text-[#5bf286]"
+                    : "text-white"
                 } rounded-sm md:bg-transparent md:p-0`}
               >
                 Summit
@@ -91,11 +93,9 @@ const NavBar = () => {
             <li>
               <Link
                 onClick={() => setIsOpen(!isOpen)}
-                href="/summit/agenda"
+                href="/agenda"
                 className={`block py-2 px-3 ${
-                  pathname === "/summit/agenda"
-                    ? "text-[#5bf286]"
-                    : "text-white"
+                  pathname === "/agenda" ? "text-[#5bf286]" : "text-white"
                 } rounded-sm md:bg-transparent md:p-0`}
               >
                 Summit Agenda

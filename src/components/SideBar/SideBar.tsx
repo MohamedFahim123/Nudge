@@ -68,7 +68,7 @@ const Sidebar = ({ isOpen, setIsOpen, isMobile }: SidebarProps) => {
       {!isMobile && (
         <aside className="hidden lg:flex flex-col w-54 sticky top-0 h-screen bg-gray-100 border-r border-r-gray-200 shadow-xl z-30">
           <h2 className="text-lg font-bold mb-4 border-b-2 bg-[#250168] border-white py-4 px-4 flex justify-center">
-            <Link href={"/summit"}>
+            <Link href={"/"}>
               <Image
                 width={100}
                 height={100}

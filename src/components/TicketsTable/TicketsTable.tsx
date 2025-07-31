@@ -1,4 +1,7 @@
+"use client";
 import { Ticket } from "@/store/tickets";
+import ReassignTicketModal from "../ReassignTicketModal/ReassignTicketModal";
+import { useState } from "react";
 
 interface TicketsTableProps {
   tickets: Ticket[];
@@ -6,6 +9,19 @@ interface TicketsTableProps {
 }
 
 export default function TicketsTable({ tickets, setView }: TicketsTableProps) {
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [ticket, setTicket] = useState<string>("");
+
+  const handleOpenModal = (code: string) => {
+    setTicket(code);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setTicket("");
+  };
+
   return (
     <div className="overflow-x-auto w-full mt-6">
       <table className="min-w-full divide-y divide-gray-200 shadow-md rounded-lg overflow-hidden bg-white">
@@ -28,6 +44,9 @@ export default function TicketsTable({ tickets, setView }: TicketsTableProps) {
             </th>
             <th className="px-4 py-3 text-left text-sm font-semibold text-[#231f20]">
               Your Ticket
+            </th>
+            <th className="px-4 py-3 text-left text-sm font-semibold text-[#231f20]">
+              Re-Assign (Rejected Only)
             </th>
           </tr>
         </thead>
@@ -65,17 +84,35 @@ export default function TicketsTable({ tickets, setView }: TicketsTableProps) {
               <td className="px-4 py-3">
                 {ticket.your_ticket ? "✅ Yes" : "❌ No"}
               </td>
+              <td className="px-4 py-3">
+                {ticket.status === "Rejected" && (
+                  <button
+                    type="button"
+                    title="Re-Assign"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleOpenModal(ticket.code);
+                    }}
+                    className="hover:underline outline-none font-semibold transistion-all duration-300 text-[#250168] cursor-pointer"
+                  >
+                    Re-Assign Ticket
+                  </button>
+                )}
+              </td>
             </tr>
           ))}
           {tickets.length === 0 && (
             <tr>
-              <td colSpan={6} className="text-center py-5 text-gray-500">
+              <td colSpan={7} className="text-center py-5 text-gray-500">
                 No tickets found.
               </td>
             </tr>
           )}
         </tbody>
       </table>
+      {showModal && ticket && (
+        <ReassignTicketModal ticketId={ticket} onClose={handleCloseModal} />
+      )}
     </div>
   );
 }
